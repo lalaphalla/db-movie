@@ -2,7 +2,7 @@ import React from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-export default function Card() {
+export default function Card({title, vote_average,release_date,poster_path }) {
   const percentage = 66;
 
   return (
@@ -21,10 +21,10 @@ export default function Card() {
           </div>
         </a>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          Oppenheimer
+        {title}
         </p>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          Jul 19, 2023
+          {release_date}
         </p>
       </div>
     </div>
