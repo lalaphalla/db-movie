@@ -6,12 +6,12 @@ export default function Card({title, vote_average,release_date,poster_path }) {
   const percentage = 66;
 
   return (
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative">
+    <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative">
       <a href="#">
         <img
-          class="rounded-t-lg"
-          src="https://www.themoviedb.org/t/p/w220_and_h330_face/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg"
-          alt=""
+          className="rounded-t-lg w-full"
+          src={` http://image.tmdb.org/t/p/w500/${poster_path}`}
+          alt="poster"
         />
       </a>
       <div class="p-5">
