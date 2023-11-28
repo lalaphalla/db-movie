@@ -1,19 +1,20 @@
 import React from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { Link } from "react-router-dom";
 
-export default function Card({title, vote_average,release_date,poster_path }) {
-  const percentage = 66;
+export default function Card({id, title, vote_average,release_date,poster_path }) {
+  let percentage = Math.round(vote_average*10);
 
   return (
     <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative">
-      <a href="#">
+      <Link to={`/movie/${id}`}>
         <img
           className="rounded-t-lg w-full"
           src={` http://image.tmdb.org/t/p/w500/${poster_path}`}
           alt="poster"
         />
-      </a>
+      </Link>
       <div class="p-5">
         <a href="#">
           <div class="w-10 h-10 bg-gray-200 rounded-full dark:bg-gray-700 absolute top-[310px] left-4">

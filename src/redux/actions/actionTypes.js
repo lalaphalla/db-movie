@@ -1,3 +1,6 @@
 export const actionType = {
-    GET_MOVIES: "GET_MOVIES"
+    GET_MOVIES: "GET_MOVIES",
+    GET_MOVIE_DETAIL: "GET_MOVIE_DETAIL",
+    SEARCH_MOVIE: "SEARCH_MOVIE"
+
 }
