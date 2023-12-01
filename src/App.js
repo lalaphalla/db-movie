@@ -4,6 +4,8 @@ import MyNav from "./components/MyNav";
 import MyFooter from "./components/MyFooter";
 import Home from "./home";
 import Movie from "./pages/Movie";
+import Movies from "./pages/Movies";
+import TvShows from "./pages/TvShows";
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
       <Route path="/" element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/movie/:id" element={<Movie />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/tv" element={<TvShows />} />
       </Route>
     </Routes>
   );

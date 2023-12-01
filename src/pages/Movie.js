@@ -20,36 +20,41 @@ export default function Movie() {
   const percentage = Math.round(movieDetail.vote_average * 10);
 
   useEffect(() => {
-    fetchCastById(id).then((res) => setCasts(res.cast.slice(0,7)));
-    
+    fetchCastById(id).then((res) => setCasts(res.cast.slice(0, 7)));
+
     dispatch(fetchMovieDetail(id));
   }, []);
   return (
-    <div>
+    <div className="max-w-screen-xl mx-auto">
       {isLoading ? (
         <Loading />
       ) : (
         <div>
-          Movie
-          <img
-            className="rounded-t-lg w-48"
-            src={` http://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
-            alt="poster"
-          />
-          <div>
-            <h3>{movieDetail.title}</h3>
-            <p>
-              {movieDetail.release_date} - genres:{" "}
-              {movieDetail.genre &&
-                movieDetail.genres.map((genre) => genre.name + ",")}
-              runtime:{`${hours}h ${minutes}m`}
-            </p>
-            <div className="w-16">
-              <CircularProgressbar value={percentage} text={`${percentage}%`} />
+          <div className="flex">
+            <img
+              className="rounded-t-lg w-48"
+              src={` http://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
+              alt="poster"
+            />
+            <div>
+              <h3>{movieDetail.title}</h3>
+              <p>
+                {movieDetail.release_date} - genres:{" "}
+                {movieDetail.genre &&
+                  movieDetail.genres.map((genre) => genre.name + ",")}
+                runtime:{`${hours}h ${minutes}m`}
+              </p>
+              <div className="w-16">
+                <CircularProgressbar
+                  value={percentage}
+                  text={`${percentage}%`}
+                />
+              </div>
+              <h3>Overview</h3>
+              <p>{movieDetail.overview}</p>
             </div>
-            <h3>Overview</h3>
-            <p>{movieDetail.overview}</p>
           </div>
+
           <div className="grid grid-cols-7 gap-4 max-w-screen-xl mx-auto ">
             {casts.length > 0 &&
               casts.map((cast) => (
