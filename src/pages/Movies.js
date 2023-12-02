@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Card from "../components/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllMovies } from "../redux/actions/movieActions";
+import { fetchPopularMovies } from "../redux/actions/movieActions";
 
 export default function Movies() {
   const dispatch = useDispatch();
@@ -13,13 +13,18 @@ export default function Movies() {
     //   console.log(res);
     // });
 
-    dispatch(fetchAllMovies("popular"));
+    dispatch(fetchPopularMovies());
   }, []);
   return (
-    <div>
-      <h2>Poplular</h2>
+    <div className="max-w-screen-xl mx-auto">
+      <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+          Popular
+        </span>{" "}
+        Movie
+      </h1>
 
-      <div className="grid grid-cols-7 gap-4 max-w-screen-xl mx-auto ">
+      <div className="grid grid-cols-7 gap-4 ">
         {movies.length > 0 &&
           movies.map((movie) => (
             <Card
