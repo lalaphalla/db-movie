@@ -9,5 +9,5 @@ export const actionType = {
     GET_POPULAR_TV: "GET_POPULAR_TV",
     GET_TV_DETAIL: "GET_TV_DETAIL",
     GET_TOPRATED_MOVIES: "GET_TOPRATED_MOVIES",
-
+    
 }

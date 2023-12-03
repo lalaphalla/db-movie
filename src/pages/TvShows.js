@@ -20,7 +20,7 @@ export default function TvShows() {
         TV Show
       </h1>
 
-      <div className="grid grid-cols-7 gap-4">
+      <div className="grid grid-cols-5 gap-4">
         {tvshow.length > 0 &&
           tvshow.map((tvshow) => (
             <TvCard
