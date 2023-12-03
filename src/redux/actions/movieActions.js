@@ -2,11 +2,48 @@ import { API_URL } from "../../utils/constant"
 import axios from 'axios'
 import { actionType } from "./actionTypes"
 
-export const fetchPopularMovies = (limit) =>{
+export const fetchPopularMovies = (limit,page) =>{
     return(dispatch) => {
-        axios(`${API_URL}movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=1`) 
+        axios(`${API_URL}movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=${page}`) 
             .then(res => dispatch({
                 type: actionType.GET_MOVIES,
+                payload: res.data.results.slice(0,limit)
+            }))
+    }
+}
+export const fetchMoreMovies = (page) =>{
+    return(dispatch) => {
+        axios(`${API_URL}movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=${page}`) 
+            .then(res => dispatch({
+                type: actionType.GET_MORE_MOVIES,
+                payload: res.data.results
+            }))
+    }
+}
+export const fetchNowPlayingMovies = (limit) =>{
+    return(dispatch) => {
+        axios(`${API_URL}movie/upcoming?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`) 
+            .then(res => dispatch({
+                type: actionType.GET_NOWPLAYING_MOVIES,
+                payload: res.data.results.slice(0,limit)
+            }))
+    }
+}
+export const fetchTopRatedMovies = (limit) =>{
+    return(dispatch) => {
+        axios(`${API_URL}movie/top_rated?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`) 
+            .then(res => dispatch({
+                type: actionType.GET_TOPRATED_MOVIES,
+                payload: res.data.results.slice(0,limit)
+            }))
+    }
+}
+
+export const fetchUpComingMovies = (limit) =>{
+    return(dispatch) => {
+        axios(`${API_URL}movie/upcoming?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`) 
+            .then(res => dispatch({
+                type: actionType.GET_UPCOMING_MOVIES,
                 payload: res.data.results.slice(0,limit)
             }))
     }

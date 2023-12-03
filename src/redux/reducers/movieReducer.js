@@ -2,7 +2,11 @@ import { actionType } from "../actions/actionTypes";
 
 const initialState = {
   movies: [],
+  moreMovies: [],
+  nowPlayingMovies: [],
   trendingMovies: [],
+  upComingMovies: [],
+  topRatedMovies: [],
   tvshow: [],
   movieDetail: {},
   tvDetail: {},
@@ -17,8 +21,20 @@ export const movieReducer = (state = initialState, action) => {
     case actionType.GET_MOVIE_DETAIL:
       return { ...state, movieDetail: payload, isLoading: false };
 
+    case actionType.GET_MORE_MOVIES:
+      return { ...state, moreMovies: payload, isLoading: false };
+
     case actionType.GET_TRENDING_MOVIES:
       return { ...state, trendingMovies: payload, isLoading: false };
+
+    case actionType.GET_NOWPLAYING_MOVIES:
+      return { ...state, nowPlayingMovies: payload, isLoading: false };
+
+    case actionType.GET_UPCOMING_MOVIES:
+      return { ...state, upComingMovies: payload, isLoading: false };
+
+    case actionType.GET_TOPRATED_MOVIES:
+      return { ...state, topRatedMovies: payload, isLoading: false };
 
     case actionType.GET_POPULAR_TV:
       return { ...state, tvshow: payload, isLoading: false };
