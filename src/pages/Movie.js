@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
 import CardCast from "../components/CardCast";
 import { fetchCastById } from "../services/moviesAction";
+import YoutubePlayer from "../components/YoutubePlayer";
 
 export default function Movie() {
   const { id } = useParams();
@@ -63,6 +64,7 @@ export default function Movie() {
             </div>
           </div>
 
+<YoutubePlayer videoId=""/>
           <div className="grid grid-cols-7 gap-4 max-w-screen-xl mx-auto ">
             {casts.length > 0 &&
               casts.map((cast) => (

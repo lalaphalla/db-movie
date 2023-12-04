@@ -11,9 +11,6 @@ export default function Movies() {
   const [curPage, setCurPage] = useState(1);
   const isButtonDisabled = curPage >=5;
 
-  const LoadMoreMovies = () => {
-
-  }
 
   useEffect(() => {
     // fetchMoviePopular().then((res) => {
