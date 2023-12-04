@@ -125,6 +125,16 @@ export const fetchMoreMovies = (page) => {
             }))
     }
 }
+export const fetchMovieTrailer = (id) => {
+    return (dispatch) => {
+        axios(`${API_URL}movie/${id}/videos?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`)
+            .then(res => dispatch({
+                type: actionType.GET_MOVIE_TRAILER,
+                payload: res.data.results
+            }))
+    }
+}
+
     // return (dispatch) => {
     //     axios(`${API_URL}movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=${currentPage + 1}`)
     //         .then(res => dispatch({

@@ -12,7 +12,6 @@ export default function Card({
   poster_path,
 }) {
   let percentage = Math.round(vote_average * 10);
-  console.log(release_date);
   const releaseDate = new Date(release_date)
   const formmatedDate= format(releaseDate, "MMM dd, yyyy")
   return (
