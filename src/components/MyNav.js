@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MovieSearch from "./MovieSearch";
 
 export default function MyNav() {
   return (
@@ -71,6 +72,7 @@ export default function MyNav() {
             </li>
           </ul>
         </div>
+     <MovieSearch />
       </div>
     </nav>
   );

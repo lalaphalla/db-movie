@@ -11,6 +11,7 @@ const initialState = {
   movieDetail: {},
   movieTrailer: [],
   tvDetail: {},
+  searchMovies: [],
   currentPage: 1,
   itemsPerPage: 10,
   isLoading: true,
@@ -54,7 +55,7 @@ export const movieReducer = (state = initialState, action) => {
       return { ...state, tvDetail: payload, isLoading: false };
 
     case actionType.SEARCH_MOVIE:
-      return { ...state, movies: payload, isLoading: false };
+      return { ...state, searchMovies: payload, isLoading: false };
 
     case actionType.GET_MORE_MOVIES:
       return { ...state, currentPage: state.currentPage + 1, movies: [...state.movies, ...action.payload] };

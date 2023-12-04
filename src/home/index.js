@@ -10,6 +10,7 @@ import {
 } from "../redux/actions/movieActions";
 import Search from "../components/Search";
 import YoutubePlayer from "../components/YoutubePlayer";
+import MovieSearch from "../components/MovieSearch";
 
 export default function Home() {
   // const [movies, setMovies] = useState([]);
@@ -49,8 +50,7 @@ export default function Home() {
   // };
   return (
     <section className="max-w-screen-xl mx-auto">
-      <Search />
-      <YoutubePlayer videoId = {videoId} />
+      <MovieSearch />
       <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
         <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
           Now Playing

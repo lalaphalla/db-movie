@@ -86,12 +86,12 @@ export const fetchPopularTV = (category) => {
     }
 }
 
-export const searchMovie = (title) => {
+export const fetchSearchMovie = (query) => {
     return (dispatch) => {
-        axios(` ${API_URL}search/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&query=${title}`)
+        axios(` ${API_URL}search/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&query=${query}`)
             .then(res => dispatch({
                 type: actionType.SEARCH_MOVIE,
-                payload: res.data
+                payload: res.data.results.sort(function(a,b){return new Date(b.release_date) - new Date(a.release_date)})
             }))
     }
 }
