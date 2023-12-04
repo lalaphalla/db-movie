@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMovieDetail, fetchMovieTrailer } from "../redux/actions/movieActions";
+import {
+  fetchMovieDetail,
+  fetchMovieTrailer,
+} from "../redux/actions/movieActions";
 import Loading from "../components/Loading";
 import { useParams } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
@@ -19,46 +22,56 @@ export default function Movie() {
   const hours = Math.floor(movieDetail.runtime / 60);
   const minutes = movieDetail.runtime % 60;
   const percentage = Math.round(movieDetail.vote_average * 10);
-  const finalTrailer = "Final Trailer"
-  const officialTrailer = "Official Trailer"
-  const trailer = "Trailer"
-  const trailerKey = movieTrailer.find(movie => (movie.name === finalTrailer || movie.name === officialTrailer || movie.type === trailer))
-  const [trailerId, setTrailerId] = useState({})
+  const finalTrailer = "Final Trailer";
+  const officialTrailer = "Official Trailer";
+  const trailer = "Trailer";
+  const trailerKey = movieTrailer.find(
+    (movie) =>
+      movie.name === finalTrailer ||
+      movie.name === officialTrailer ||
+      movie.type === trailer
+  );
+  const [trailerId, setTrailerId] = useState({});
+  const isHaveTrailer = false;
 
   // const getTrailerId = () => {
-  //   let trailerKey = "" 
+  //   let trailerKey = ""
   //   if (movieTrailer.length > 0) trailerKey = movieTrailer.find(movie => (movie.name === finalTrailer).key)
-  //   console.log(trailerKey); 
+  //   console.log(trailerKey);
   // }
   useEffect(() => {
     fetchCastById(id).then((res) => setCasts(res.cast.slice(0, 7)));
     dispatch(fetchMovieDetail(id));
-    dispatch(fetchMovieTrailer(id))
-    setTrailerId(movieTrailer.find(movie => (movie.name === finalTrailer)))
+    dispatch(fetchMovieTrailer(id));
+    setTrailerId(movieTrailer.find((movie) => movie.name === finalTrailer));
     console.log("useeffectaaaaaa", trailerId);
   }, [dispatch]);
-
 
   return (
     <div className="max-w-screen-xl mx-auto">
       {isLoading ? (
         <Loading />
       ) : (
-        <div>
+        <div className="grid grid-cols-1">
           <div className="flex">
-            <div className="ml-6 w-[680px]">
+            <div className="ml-6 w-[320px]">
               <img
+
+          // class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
                 className="rounded-t-lg w-full"
                 src={` http://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
                 alt="poster"
               />
             </div>
-
             <div className="ml-6 mt-10">
               <h3 className="font-bold text-xl">{movieDetail.title}</h3>
               <ul>
                 <li> {movieDetail.release_date}</li>
-                <li> {movieDetail.genres && movieDetail.genres.map((genre) => genre.name + " ")} </li>
+                <li>
+                  {" "}
+                  {movieDetail.genres &&
+                    movieDetail.genres.map((genre) => genre.name + " ")}{" "}
+                </li>
                 {/* <li> {movieTrailer && movieTrailer.find(movie => (movie.name === finalTrailer)).key} </li> */}
                 <li>runtime:{`${hours}h ${minutes}m`}</li>
                 <li>{trailerKey && trailerKey.key}</li>
@@ -70,7 +83,9 @@ export default function Movie() {
                     text={`${percentage}%`}
                   />
                 </div>
-                <p className="font-bold">User <br /> Score</p>
+                <p className="font-bold">
+                  User <br /> Score
+                </p>
                 <button>Play Trailer</button>
               </div>
               <h3>Overview</h3>
@@ -81,7 +96,11 @@ export default function Movie() {
             movieTrailer.length > 0 ? <Loading /> :
             <YoutubePlayer videoId={movieTrailer && movieTrailer.find(movie => (movie.name === finalTrailer)).key} />
           } */}
-          <YoutubePlayer videoId={trailerKey && trailerKey.key}  />
+          {trailerKey ? (
+            <YoutubePlayer videoId={trailerKey && trailerKey.key} />
+          ) : (
+            <p>No Trailer</p>
+          )}
           <div className="grid grid-cols-7 gap-4 max-w-screen-xl mx-auto ">
             {casts.length > 0 &&
               casts.map((cast) => (
