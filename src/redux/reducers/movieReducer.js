@@ -12,6 +12,7 @@ const initialState = {
   movieTrailer: [],
   tvDetail: {},
   searchMovies: [],
+  randomMovie: {},
   currentPage: 1,
   itemsPerPage: 10,
   isLoading: true,
@@ -60,6 +61,8 @@ export const movieReducer = (state = initialState, action) => {
     case actionType.GET_MORE_MOVIES:
       return { ...state, currentPage: state.currentPage + 1, movies: [...state.movies, ...action.payload] };
 
+    case actionType.GET_RANDOM_MOVIE:
+      return { ...state, randomMovie: payload };
     default:
       return state;
   }
