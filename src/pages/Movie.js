@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  clearMovieDetail,
   fetchMovieDetail,
   fetchMovieTrailer,
 } from "../redux/actions/movieActions";
@@ -8,17 +9,20 @@ import Loading from "../components/Loading";
 import { useParams } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
 import CardCast from "../components/CardCast";
-import { fetchCastById } from "../services/moviesAction";
+import { fetchCastById, getMovieDetail } from "../services/moviesAction";
 import YoutubePlayer from "../components/YoutubePlayer";
+import TrailerModal from "../components/TrailerModal";
 
 export default function Movie() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
+  // const [movieDetail, setMovieDetail] = useState({})
   const [casts, setCasts] = useState([]);
 
   let { movieDetail, movieTrailer } = useSelector((state) => state.movieR);
-  let { isLoading } = useSelector((state) => state.movieR);
+  let { isMovieDetailLoad } = useSelector((state) => state.movieR);
+
   const hours = Math.floor(movieDetail.runtime / 60);
   const minutes = movieDetail.runtime % 60;
   const percentage = Math.round(movieDetail.vote_average * 10);
@@ -41,27 +45,33 @@ export default function Movie() {
   // }
   useEffect(() => {
     fetchCastById(id).then((res) => setCasts(res.cast.slice(0, 7)));
+    // getMovieDetail(id).then(res => setMovieDetail(res.data) )
     dispatch(fetchMovieDetail(id));
     dispatch(fetchMovieTrailer(id));
     setTrailerId(movieTrailer.find((movie) => movie.name === finalTrailer));
-    console.log("useeffectaaaaaa", trailerId);
+
+    return () => {
+      dispatch(clearMovieDetail());
+      console.log("clearMovie");
+    };
   }, [dispatch]);
 
   return (
     <div className="max-w-screen-xl mx-auto">
-      {isLoading ? (
+      {isMovieDetailLoad ? (
         <Loading />
       ) : (
         <div className="grid grid-cols-1">
           <div className="flex">
             <div className="ml-6 w-[320px]">
-              <img
-
-          // className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
-                className="rounded-t-lg w-full"
-                src={` http://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
-                alt="poster"
-              />
+              {movieDetail.poster_path && (
+                <img
+                  // className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
+                  className="rounded-t-lg w-full"
+                  src={` http://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
+                  alt="poster"
+                />
+              )}
             </div>
             <div className="ml-6 mt-10">
               <h3 className="font-bold text-xl">{movieDetail.title}</h3>
@@ -83,10 +93,10 @@ export default function Movie() {
                     text={`${percentage}%`}
                   />
                 </div>
-                <p className="font-bold">
+                <p className="font-bold mr-4">
                   User <br /> Score
                 </p>
-                <button>Play Trailer</button>
+                {trailerKey && <TrailerModal videoId={trailerKey.key} />}{" "} 
               </div>
               <h3>Overview</h3>
               <p>{movieDetail.overview}</p>
@@ -96,12 +106,12 @@ export default function Movie() {
             movieTrailer.length > 0 ? <Loading /> :
             <YoutubePlayer videoId={movieTrailer && movieTrailer.find(movie => (movie.name === finalTrailer)).key} />
           } */}
-          {trailerKey ? (
+          {/* {trailerKey ? (
             <YoutubePlayer videoId={trailerKey && trailerKey.key} />
           ) : (
             <p>No Trailer</p>
-          )}
-          <div className="grid grid-cols-7 gap-4 max-w-screen-xl mx-auto ">
+          )} */}
+          <div className="grid grid-cols-7 gap-4 max-w-screen-xl mx-auto mt-4">
             {casts.length > 0 &&
               casts.map((cast) => (
                 <CardCast

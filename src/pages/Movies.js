@@ -7,6 +7,7 @@ import {
   fetchPopularMovies,
 } from "../redux/actions/movieActions";
 import Loading from "../components/Loading";
+import { MovieList } from "../components/MovieList";
 
 export default function Movies() {
   const dispatch = useDispatch();
@@ -16,19 +17,7 @@ export default function Movies() {
   const isButtonDisabled = curPage >= 5;
 
   useEffect(() => {
-    // fetchMoviePopular().then((res) => {
-    //   setMovies(res.results.slice(0,7));
-    //   console.log(res);
-    // });
     dispatch(fetchAllMovies());
-
-    // if(curPage>1){
-    //   dispatch(fetchMoreMovies(curPage))
-    //   createPopularMovieList(moreMovies)
-
-    // console.log(moreMovies, curPage);
-
-    // }
   }, [dispatch]);
 
   const Heavy = lazy(() => import("../components/Card"));
@@ -63,8 +52,8 @@ export default function Movies() {
         </span>{" "}
         Movie
       </h1>
-
-      <div className="grid grid-cols-5 gap-4 ">
+      <MovieList />
+      {/* <div className="grid grid-cols-5 gap-4 ">
         <Suspense fallback={<Loading />}>
           {createPopularMovieList(movies)}
         </Suspense>
@@ -76,7 +65,7 @@ export default function Movies() {
         className="btnLoadmore text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium w-full mt-6 rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
       >
         {isButtonDisabled ? "No More Movies" : "Load More"}
-      </button>
+      </button> */}
     </div>
   );
 }

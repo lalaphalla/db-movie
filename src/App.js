@@ -9,6 +9,7 @@ import TvShows from "./pages/TvShows";
 import TvShow from "./pages/TvShow";
 import People from "./pages/Peoples";
 import Search from "./pages/Search";
+import Loading from "./components/Loading";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/people" element={<People />} />
         <Route path="/tv/:id" element={<TvShow />} />
         <Route path="/search/movie" element={<Search />} />
+        <Route path="/loading" element={<Loading />}/>
 
       </Route>
     </Routes>

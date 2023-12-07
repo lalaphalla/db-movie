@@ -16,7 +16,7 @@ export default function YoutubePlayer({videoId}) {
     }
     // const videoId = "RjNcTBXTk4I"
   return (
-    <div>YoutubePlayer
+    <div>
         <YouTube videoId={videoId} opts={opts} onReady={onReady} />
     </div>
   )
