@@ -1,18 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
-export default function MovieSearch() {
-    const [query, setQuery] = useState('')
-  const navigate = useNavigate();
-  const handleSearch = (e) => {
-    e.preventDefault()
-    navigate(`/search/movie?query=${encodeURIComponent(query)}`);
-  };
-
+export default function InputSearch() {
   return (
-
-    <form onSubmit={handleSearch}>
-{/* <form className="mt-4"> */}
+    <form className="mt-4">
       <label
         for="default-search"
         className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -39,8 +29,7 @@ export default function MovieSearch() {
         </div>
         <input
           type="search"
-          value={query}
-          onChange={(e)=> setQuery(e.target.value)}
+          id="default-search"
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder="Search Movies & Tv Show..."
           required
@@ -53,15 +42,5 @@ export default function MovieSearch() {
         </button>
       </div>
     </form>
-
-    // <form onSubmit={handleSearch}>
-    //   <input
-    //     type="text"
-    //     value={query}
-    //     onChange={(e) => setQuery(e.target.value)} 
-    //     placeholder="Search for movie"
-    //   />
-    //   <button type="submit">Search</button>
-    // </form>
   );
 }

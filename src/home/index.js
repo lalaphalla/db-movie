@@ -13,6 +13,7 @@ import MovieSearch from "../components/MovieSearch";
 import Loading from "../components/Loading";
 import Hero from "../components/Hero";
 import ModalTest from "../components/ModalTest";
+import InputSearch from "../components/ui/InputSearch";
 
 
 export default function Home() {
@@ -59,7 +60,7 @@ export default function Home() {
   const Heavy = lazy(() => import("../components/Card"));
   const RandomPopular = lazy(() => import("../components/Hero"));
   return (
-    <section className="max-w-screen-xl mx-auto">
+    <section className="max-w-screen-xl mx-auto  ">
       {isLoading ? (
         <Loading />
       ) : (

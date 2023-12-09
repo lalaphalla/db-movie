@@ -33,6 +33,7 @@ export default function Movies() {
               vote_average={movie.vote_average}
               release_date={movie.release_date}
               poster_path={movie.poster_path}
+              backdrop_path={movie.backdrop_path}
             />
           );
         });
@@ -45,9 +46,9 @@ export default function Movies() {
     console.log("hello", curPage);
   };
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="mx-auto max-w-screen-xl">
       <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+        <span className="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">
           Popular
         </span>{" "}
         Movie
