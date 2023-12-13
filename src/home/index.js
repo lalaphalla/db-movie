@@ -34,10 +34,6 @@ export default function Home() {
   //   );
   // };
 
-  const [randomMovie2, setRandomMovie2] = useState({});
-
-  const randomMovie1 = movies[Math.floor(Math.random() * movies.length)];
-
   useEffect(() => {
     // fetchMoviePopular().then((res) => {
     //   setMovies(res.results.slice(0,7));
