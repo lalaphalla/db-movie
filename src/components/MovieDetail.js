@@ -43,7 +43,7 @@ export default function MovieDetail() {
   //   console.log(trailerKey);
   // }
   useEffect(() => {
-    fetchCastById(id).then((res) => setCasts(res.cast.slice(0, 7)));
+      fetchCastById(id).then((res) => setCasts(res.cast.slice(0, 7)));
     // getMovieDetail(id).then(res => setMovieDetail(res.data) )
     dispatch(fetchMovieDetail(id));
     dispatch(fetchMovieTrailer(id));
@@ -110,7 +110,7 @@ export default function MovieDetail() {
               </div>
             </div>
           </div>
-          <div className="mx-auto max-w-screen-xl bg-white">
+          <div className="mx-auto max-w-screen-xl bg-white pb-3">
             <h3 className="text-2xl font-bold mt-4">Top Billed Cast</h3>
             <div className="mt-4 grid grid-cols-7 gap-4">
               {casts.length > 0 &&

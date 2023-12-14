@@ -26,6 +26,20 @@ export const fetchAllMovies = () => {
     );
   };
 };
+export const fetchMoviesByGenres = () => {
+  return (dispatch) => {
+    axios(
+      `${API_URL}discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&sort_by=release_date.desc&page=1&with_genres=35,37,80`
+    ).then((res) =>
+      dispatch({
+        type: actionType.GET_MOVIES,
+        payload: res.data.results,
+      })
+    );
+  };
+};
+
+
 export const fetchNowPlayingMovies = (limit) => {
   return (dispatch) => {
     axios(

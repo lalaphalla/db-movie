@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllMovies,
   fetchMoreMovies,
+  fetchMoviesByGenres,
   fetchPopularMovies,
 } from "../redux/actions/movieActions";
 import Loading from "../components/Loading";
 import { MovieList } from "../components/MovieList";
+import Filterbar from "../components/Filterbar";
 
 export default function Movies() {
   const dispatch = useDispatch();
@@ -15,9 +17,9 @@ export default function Movies() {
   let { movies } = useSelector((state) => state.movieR);
   const [curPage, setCurPage] = useState(1);
   const isButtonDisabled = curPage >= 5;
-
+  const [isFilter, setIsFilter] = useState(false)
   useEffect(() => {
-    dispatch(fetchAllMovies());
+    !isFilter ? dispatch(fetchAllMovies()) : dispatch(fetchMoviesByGenres())
   }, [dispatch]);
 
   const Heavy = lazy(() => import("../components/Card"));
@@ -47,6 +49,7 @@ export default function Movies() {
   };
   return (
     <div className="mx-auto max-w-screen-xl">
+      <Filterbar isFilter={isFilter} setIsFilter={setIsFilter}/>
       <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
         <span className="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">
           Popular
