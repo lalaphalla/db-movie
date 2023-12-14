@@ -1,24 +1,35 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { API_BACKDROP_PATH } from "../utils/constant";
 
-export default function Hero({title, overview, backdrop_path}) { 
-    useEffect(()=>{
-        console.log(backdrop_path,title);
-    },[])
+export default function Hero({ id, title, overview, backdrop_path, poster_path }) {
+  const imageUrl = API_BACKDROP_PATH + backdrop_path
+  console.log(imageUrl && imageUrl);
+  useEffect(() => {
+    console.log(backdrop_path, title);
+  }, []);
   return (
-    <section className="bg-white dark:bg-gray-900">
-      <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+
+    <section className="bg-black dark:bg-gray-900 relative 
+    before:bg-black before:content-[''] before:w-full before:h-full before:absolute before:bg-opacity-50 "
+      style={{ backgroundImage: `url(${imageUrl})` }}
+    >
+
+      <div className="relative grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12"
+
+      >
         <div className="mr-auto place-self-center lg:col-span-7">
-          <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
-           {title}
+          <h1 className="max-w-2xl mb-4 text-white text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+            {title}
           </h1>
-          <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-           {overview}
+          <p className="max-w-2xl mb-6 font-light text-white lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+            {overview}
           </p>
-          <a
-            href="#"
+          <Link
+            to={`/movie/${id}`}
             className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
           >
-            Get started
+            Detail
             <svg
               className="w-5 h-5 ml-2 -mr-1"
               fill="currentColor"
@@ -31,19 +42,15 @@ export default function Hero({title, overview, backdrop_path}) {
                 clipRule="evenodd"
               ></path>
             </svg>
-          </a>
-          <a
-            href="#"
-            className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
-          >
-            {backdrop_path}
-          </a>
+          </Link>
         </div>
         <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-          <img
-            src={`http://image.tmdb.org/t/p/w440_and_h660_face/${backdrop_path}`}
-            alt="mockup"
-          />
+          {backdrop_path && (
+            <img
+              src={`http://image.tmdb.org/t/p/w440_and_h660_face/${poster_path}`}
+              alt="mockup"
+            />
+          )}
         </div>
       </div>
     </section>

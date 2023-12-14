@@ -29,7 +29,7 @@ export const fetchAllMovies = () => {
 export const fetchNowPlayingMovies = (limit) => {
   return (dispatch) => {
     axios(
-      `${API_URL}movie/nowplaying?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`
+      `${API_URL}movie/now_playing?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`
     ).then((res) =>
       dispatch({
         type: actionType.GET_NOWPLAYING_MOVIES,
@@ -87,18 +87,19 @@ export const fetchTvDetail = (id) => {
     );
   };
 };
-export const fetchTrendingMovies = () => {
+export const fetchTrendingMovies = (limit) => {
   return (dispatch) => {
     axios(
       `${API_URL}trending/movie/day?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`
     ).then((res) =>
       dispatch({
         type: actionType.GET_TRENDING_MOVIES,
-        payload: res.data.results.slice(0, 7),
+        payload: res.data.results.slice(0, limit),
       })
     );
   };
 };
+
 
 export const fetchPopularTV = (category) => {
   return (dispatch) => {
@@ -186,6 +187,9 @@ export const fetchMovieTrailer = (id) => {
     );
   };
 };
+export const clearMovieDetail = () => {
+  return{ type: 'CLEAR_MOVIE_DETAILS' }
+}
 
 // return (dispatch) => {
 //     axios(`${API_URL}movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=${currentPage + 1}`)

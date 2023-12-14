@@ -16,6 +16,7 @@ const initialState = {
   currentPage: 1,
   itemsPerPage: 10,
   isLoading: true,
+  isMovieDetailLoad: true,
 };
 
 export const paginationReducer = (state = initialState, action)=>{
@@ -29,7 +30,7 @@ export const movieReducer = (state = initialState, action) => {
       return { ...state, movies: payload, isLoading: false };
 
     case actionType.GET_MOVIE_DETAIL:
-      return { ...state, movieDetail: payload, isLoading: false };
+      return { ...state, movieDetail: payload, isMovieDetailLoad: false };
 
     // case actionType.GET_MORE_MOVIES:
     //   return { ...state, moreMovies: payload, isLoading: false };
@@ -63,6 +64,10 @@ export const movieReducer = (state = initialState, action) => {
 
     case actionType.GET_RANDOM_MOVIE:
       return { ...state, randomMovie: payload };
+
+      case actionType.CLEAR_MOVIE_DETAILS: 
+      return {...state, movieDetail: {}, isLoading:false }
+
     default:
       return state;
   }

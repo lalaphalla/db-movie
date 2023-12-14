@@ -7,6 +7,7 @@ import {
   fetchPopularMovies,
 } from "../redux/actions/movieActions";
 import Loading from "../components/Loading";
+import { MovieList } from "../components/MovieList";
 
 export default function Movies() {
   const dispatch = useDispatch();
@@ -16,25 +17,13 @@ export default function Movies() {
   const isButtonDisabled = curPage >= 5;
 
   useEffect(() => {
-    // fetchMoviePopular().then((res) => {
-    //   setMovies(res.results.slice(0,7));
-    //   console.log(res);
-    // });
     dispatch(fetchAllMovies());
-
-    // if(curPage>1){
-    //   dispatch(fetchMoreMovies(curPage))
-    //   createPopularMovieList(moreMovies)
-
-    // console.log(moreMovies, curPage);
-
-    // }
   }, [dispatch]);
 
   const Heavy = lazy(() => import("../components/Card"));
   const createPopularMovieList = (movieList) => {
     return isLoading
-      ? "loading"
+      ? <Loading />
       : movieList.map((movie) => {
           return (
             <Card
@@ -44,6 +33,7 @@ export default function Movies() {
               vote_average={movie.vote_average}
               release_date={movie.release_date}
               poster_path={movie.poster_path}
+              backdrop_path={movie.backdrop_path}
             />
           );
         });
@@ -56,15 +46,15 @@ export default function Movies() {
     console.log("hello", curPage);
   };
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="mx-auto max-w-screen-xl">
       <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+        <span className="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">
           Popular
         </span>{" "}
         Movie
       </h1>
-
-      <div className="grid grid-cols-5 gap-4 ">
+      <MovieList />
+      {/* <div className="grid grid-cols-5 gap-4 ">
         <Suspense fallback={<Loading />}>
           {createPopularMovieList(movies)}
         </Suspense>
@@ -76,7 +66,7 @@ export default function Movies() {
         className="btnLoadmore text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium w-full mt-6 rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
       >
         {isButtonDisabled ? "No More Movies" : "Load More"}
-      </button>
+      </button> */}
     </div>
   );
 }
