@@ -18,17 +18,21 @@ export default function Movies() {
   const [curPage, setCurPage] = useState(1);
   const isButtonDisabled = curPage >= 5;
   const [isFilter, setIsFilter] = useState(false)
+  const [genresIds, setGenresIds] = useState('')
+
   useEffect(() => {
-    !isFilter ? dispatch(fetchAllMovies()) : dispatch(fetchMoviesByGenres())
-  }, [dispatch]);
+    !isFilter ? dispatch(fetchAllMovies()) : dispatch(fetchMoviesByGenres(genresIds))
+    console.log(genresIds)
+  }, [dispatch, genresIds]);
 
   const Heavy = lazy(() => import("../components/Card"));
   const createPopularMovieList = (movieList) => {
     return isLoading
       ? <Loading />
       : movieList.map((movie) => {
-          return (
-            <Card
+        return (
+          <Suspense fallback={<Loading />}>
+            <Heavy
               key={movie.id}
               id={movie.id}
               title={movie.title}
@@ -37,8 +41,10 @@ export default function Movies() {
               poster_path={movie.poster_path}
               backdrop_path={movie.backdrop_path}
             />
-          );
-        });
+          </Suspense>
+
+        );
+      });
   };
 
   const handleLoadMore = () => {
@@ -49,7 +55,7 @@ export default function Movies() {
   };
   return (
     <div className="mx-auto max-w-screen-xl">
-      <Filterbar isFilter={isFilter} setIsFilter={setIsFilter}/>
+      <Filterbar isFilter={isFilter} setIsFilter={setIsFilter} setGenresIds={setGenresIds} />
       <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
         <span className="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">
           Popular

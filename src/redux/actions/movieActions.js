@@ -26,10 +26,10 @@ export const fetchAllMovies = () => {
     );
   };
 };
-export const fetchMoviesByGenres = () => {
+export const fetchMoviesByGenres = (genresIds) => {
   return (dispatch) => {
     axios(
-      `${API_URL}discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&sort_by=release_date.desc&page=1&with_genres=35,37,80`
+      `${API_URL}discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&sort_by=release_date.desc&page=1&with_genres=${genresIds} `
     ).then((res) =>
       dispatch({
         type: actionType.GET_MOVIES,
