@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import React, { Suspense, lazy, useEffect, useRef, useState } from "react";
 import Card from "../components/Card";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -19,11 +19,37 @@ export default function Movies() {
   const isButtonDisabled = curPage >= 5;
   const [isFilter, setIsFilter] = useState(false)
   const [genresIds, setGenresIds] = useState('')
+  const observer = useRef();
 
   useEffect(() => {
     !isFilter ? dispatch(fetchAllMovies()) : dispatch(fetchMoviesByGenres(genresIds))
     console.log(genresIds)
-  }, [dispatch, genresIds]);
+  }, [dispatch, genresIds,curPage]);
+
+  // infinite scroll
+  // const handleIntersection = (entries) => {
+  //   if (entries[0].isIntersecting) {
+  //     setCurPage((prevPage) => prevPage + 1);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   observer.current = new IntersectionObserver(handleIntersection, {
+  //     root: null,
+  //     rootMargin: '0px',
+  //     threshold: 0.1,
+  //   });
+
+  //   if (observer.current) {
+  //     observer.current.observe(document.getElementById('observer'));
+  //   }
+
+  //   return () => {
+  //     if (observer.current) {
+  //       observer.current.disconnect();
+  //     }
+  //   };
+  // }, []);
 
   const Heavy = lazy(() => import("../components/Card"));
   const createPopularMovieList = (movieList) => {

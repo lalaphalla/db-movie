@@ -35,9 +35,12 @@ export const MovieList = () => {
     dispatch(fetchMoreMovies(curPage));
     console.log("hello", curPage);
   };
+
   useEffect(() => {
     dispatch(fetchAllMovies())
   }, [dispatch]);
+
+  
   return (
     <>
       <div className="grid grid-cols-5 gap-4 ">

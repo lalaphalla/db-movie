@@ -11,6 +11,7 @@ import Search from "./pages/Search";
 import Loading from "./components/Loading";
 import MovieDetail from "./components/MovieDetail";
 import TvShowDetail from "./components/TvShowDetail";
+import MovieListDemo from "./components/MovielistDemo";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <Route path="/" element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/movie/:id" element={<MovieDetail />} />
-        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies" element={<Movies />} /> 
         <Route path="/tv" element={<TvShows />} />
         <Route path="/people" element={<People />} />
         <Route path="/tv/:id" element={<TvShowDetail />} />
