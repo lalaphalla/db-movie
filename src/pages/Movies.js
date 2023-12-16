@@ -23,7 +23,7 @@ export default function Movies() {
   useEffect(() => {
     !isFilter ? dispatch(fetchAllMovies()) : dispatch(fetchMoviesByGenres(genresIds))
     console.log(genresIds)
-  }, [dispatch, genresIds]);
+  }, [dispatch, genresIds, isFilter]);
 
   const Heavy = lazy(() => import("../components/Card"));
   const createPopularMovieList = (movieList) => {
