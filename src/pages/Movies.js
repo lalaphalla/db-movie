@@ -24,7 +24,7 @@ export default function Movies() {
   useEffect(() => {
     !isFilter ? dispatch(fetchAllMovies()) : dispatch(fetchMoviesByGenres(genresIds))
     console.log(genresIds)
-  }, [dispatch, genresIds,curPage]);
+  }, [dispatch, genresIds, isFilter]);
 
   // infinite scroll
   // const handleIntersection = (entries) => {
@@ -50,7 +50,6 @@ export default function Movies() {
   //     }
   //   };
   // }, []);
-
   const Heavy = lazy(() => import("../components/Card"));
   const createPopularMovieList = (movieList) => {
     return isLoading
