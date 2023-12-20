@@ -2,8 +2,8 @@ import { actionType } from "../actions/actionTypes";
 
 const initialState = {
   // movies: [],
-  movies: {},
-  moreMovies: [],
+  movies: [],
+  // moreMovies: [],
   nowPlayingMovies: [],
   trendingMovies: [],
   upComingMovies: [],
@@ -18,6 +18,7 @@ const initialState = {
   itemsPerPage: 10,
   isLoading: true,
   isMovieDetailLoad: true,
+  totalPages: 0
 };
 
 export const paginationReducer = (state = initialState, action)=>{
@@ -29,6 +30,9 @@ export const movieReducer = (state = initialState, action) => {
   switch (type) {
     case actionType.GET_MOVIES:
       return { ...state, movies: payload, isLoading: false };
+
+    case actionType.GET_TOTAL_PAGES:
+      return { ...state, totalPages: payload, isLoading: false };
       
     case actionType.GET_MOVIES_BY_GENRES:
       return { ...state, movies: payload, isLoading: false };
@@ -64,6 +68,7 @@ export const movieReducer = (state = initialState, action) => {
       return { ...state, searchMovies: payload, isLoading: false };
 
     case actionType.GET_MORE_MOVIES:
+      // return { ...state, currentPage: state.currentPage + 1, movies:payload };
       return { ...state, currentPage: state.currentPage + 1, movies: [...state.movies, ...action.payload] };
 
     case actionType.GET_RANDOM_MOVIE:

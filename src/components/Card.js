@@ -9,16 +9,28 @@ export default function Card({
   id,
   title,
   vote_average,
-  release_date,
+  release_date ,
   poster_path,
 }) {
-  let percentage = Math.round(vote_average * 10);
+  let percentage = Math.round(vote_average * 10); 
+  // let formmatedDate = null;
+  // const releaseDate = release_date ? new Date(release_date) : "";
+  // // const releaseDate = formatDate(release_date);
+  // // const releaseDate = new Date(2022, 0, 1);
 
-  const releaseDate = new Date(release_date);
-  // const releaseDate = new Date(2022, 0, 1);
+  // formmatedDate = format(releaseDate, "MMM dd, yyyy");
 
-   const formmatedDate = format(releaseDate, "MMM dd, yyyy");
+  // const formatDate = ( dateString ) =>{
+  //   if(dateString === ""){
+  //     return 'Date not available'
+  //   }
+  //   return format(new Date(dateString), "MMM dd, yyyy")
+  // }
+  
+   
   //  console.log(release_date);
+
+
   return (
     <div className="relative w-full rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
       <Link to={`/movie/${id}`}>
@@ -36,7 +48,8 @@ export default function Card({
           <CircularProgressbar value={percentage} text={`${percentage}%`} />
         </div>{" "}
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          {formmatedDate}
+          {/* {formatDate(release_date)} */}
+          {release_date && release_date}
         </p>
       </div>
     </div>

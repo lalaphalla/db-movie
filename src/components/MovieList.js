@@ -7,30 +7,30 @@ import { API_URL } from "../utils/constant";
 
 const seleteMovie = (state) => state.todos;
 
-export const MovieList = ({totalPages}) => {
+export const MovieList = ({  movies, totalPages, genresIds }) => {
   const dispatch = useDispatch();
   let { isLoading } = useSelector((state) => state.movieR);
-  let { movies } = useSelector((state) => state.movieR);
+  // let { movies } = useSelector((state) => state.movieR);
   const [curPage, setCurPage] = useState(1);
   // const [totalPages, setTotalPages] = useState(0);
   // const isButtonDisabled = curPage >= itemPerPage;
 
   const createPopularMovieList = (movieList) => {
-    
+
     return isLoading
       ? "loading"
       : movieList && movieList.map((movie) => {
-          return (
-            <Card
-              key={movie.id}
-              id={movie.id}
-              title={movie.title}
-              vote_average={movie.vote_average}
-              release_date={movie.release_date}
-              poster_path={movie.poster_path}
-            />
-          );
-        });
+        return (
+          <Card
+            key={movie.id}
+            id={movie.id}
+            title={movie.title}
+            vote_average={movie.vote_average}
+            release_date={movie.release_date}
+            poster_path={movie.poster_path}
+          />
+        );
+      });
   };
   const fetchPageResult = async () => {
     const response = await fetch(
@@ -41,15 +41,16 @@ export const MovieList = ({totalPages}) => {
 
 
   const handleLoadMore = () => {
+    console.log(movies);
     setCurPage(curPage + 1);
     if (isLoading) return;
-    dispatch(fetchMoreMovies(curPage));
+    dispatch(fetchMoreMovies(curPage, genresIds));
     console.log("handleloadmore", curPage);
   };
 
   useEffect(() => {
 
-    dispatch(fetchAllMovies());
+    // dispatch(fetchAllMovies());
     // fetchPageResult().then((res) => setItemPerPage(res.total_pages));
     // movies && setTotalPages(movies.total_pages);
 
@@ -61,9 +62,9 @@ export const MovieList = ({totalPages}) => {
 
   return (
     <>
-      <h1>Page number {movies && movies.total_pages}</h1>
+      <h1>Page number: {movies && curPage}  Total Pages: {movies && totalPages}</h1>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5 ">
-        {createPopularMovieList(movies.results)}
+        {createPopularMovieList(movies)}
       </div>
       <button
         type="button"

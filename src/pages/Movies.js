@@ -6,6 +6,7 @@ import {
   fetchMoreMovies,
   fetchMoviesByGenres,
   fetchPopularMovies,
+  fetchTotalsPage,
 } from "../redux/actions/movieActions";
 import Loading from "../components/Loading";
 import { MovieList } from "../components/MovieList";
@@ -14,19 +15,21 @@ import Filterbar from "../components/Filterbar";
 export default function Movies() {
   const dispatch = useDispatch();
   let { isLoading } = useSelector((state) => state.movieR);
-  let { movies } = useSelector((state) => state.movieR);
+  let { movies, totalPages } = useSelector((state) => state.movieR);
   const [curPage, setCurPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  // const [totalPages, setTotalPages] = useState(0);
   const isButtonDisabled = curPage >= 5;
   const [isFilter, setIsFilter] = useState(false)
   const [genresIds, setGenresIds] = useState('')
   const observer = useRef();
 
   useEffect(() => {
-    !isFilter ? dispatch(fetchAllMovies()) : dispatch(fetchMoviesByGenres(genresIds))
+    // !isFilter ? dispatch(fetchAllMovies()) : dispatch(fetchMoviesByGenres(genresIds))
+    dispatch(fetchMoviesByGenres(genresIds))
+    dispatch(fetchTotalsPage(genresIds))
     // movies && setItemPerPage(movies.total_pages)
     console.log(genresIds)
-    movies && setTotalPages((pre) => movies.total_pages)
+    // movies && setTotalPages((pre) => movies.total_pages)
     console.log('movie_page', totalPages)
   }, [dispatch, genresIds, isFilter]);
 
@@ -92,7 +95,7 @@ export default function Movies() {
         </span>{" "}
         Movie
       </h1>
-      <MovieList totalPages={totalPages}/>
+      {movies && <MovieList movies={movies} totalPages={totalPages} genresIds={genresIds}/> }
       {/* <div className="grid grid-cols-5 gap-4 ">
         <Suspense fallback={<Loading />}>
           {createPopularMovieList(movies)}
