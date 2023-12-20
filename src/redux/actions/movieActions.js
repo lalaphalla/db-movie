@@ -21,7 +21,8 @@ export const fetchAllMovies = () => {
     ).then((res) =>
       dispatch({
         type: actionType.GET_MOVIES,
-        payload: res.data.results,
+        // payload: res.data.results,
+        payload: res.data,
       })
     );
   };
@@ -29,11 +30,12 @@ export const fetchAllMovies = () => {
 export const fetchMoviesByGenres = (genresIds) => {
   return (dispatch) => {
     axios(
-      `${API_URL}discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&sort_by=release_date.desc&page=1&with_genres=${genresIds} `
+      `${API_URL}discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&sort_by=popularity.desc&page=1&with_genres=${genresIds} `
     ).then((res) =>
       dispatch({
         type: actionType.GET_MOVIES,
-        payload: res.data.results,
+        // payload: res.data.results,
+        payload: res.data,
       })
     );
   };

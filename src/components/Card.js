@@ -14,11 +14,11 @@ export default function Card({
 }) {
   let percentage = Math.round(vote_average * 10);
 
-  // const releaseDate = new Date(release_date);
-  const releaseDate = new Date(2022, 0, 1);
+  const releaseDate = new Date(release_date);
+  // const releaseDate = new Date(2022, 0, 1);
 
    const formmatedDate = format(releaseDate, "MMM dd, yyyy");
-   console.log(release_date);
+  //  console.log(release_date);
   return (
     <div className="relative w-full rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
       <Link to={`/movie/${id}`}>

@@ -1,7 +1,8 @@
 import { actionType } from "../actions/actionTypes";
 
 const initialState = {
-  movies: [],
+  // movies: [],
+  movies: {},
   moreMovies: [],
   nowPlayingMovies: [],
   trendingMovies: [],
@@ -28,6 +29,7 @@ export const movieReducer = (state = initialState, action) => {
   switch (type) {
     case actionType.GET_MOVIES:
       return { ...state, movies: payload, isLoading: false };
+      
     case actionType.GET_MOVIES_BY_GENRES:
       return { ...state, movies: payload, isLoading: false };
 

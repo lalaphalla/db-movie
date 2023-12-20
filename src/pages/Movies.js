@@ -16,6 +16,7 @@ export default function Movies() {
   let { isLoading } = useSelector((state) => state.movieR);
   let { movies } = useSelector((state) => state.movieR);
   const [curPage, setCurPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const isButtonDisabled = curPage >= 5;
   const [isFilter, setIsFilter] = useState(false)
   const [genresIds, setGenresIds] = useState('')
@@ -23,7 +24,10 @@ export default function Movies() {
 
   useEffect(() => {
     !isFilter ? dispatch(fetchAllMovies()) : dispatch(fetchMoviesByGenres(genresIds))
+    // movies && setItemPerPage(movies.total_pages)
     console.log(genresIds)
+    movies && setTotalPages((pre) => movies.total_pages)
+    console.log('movie_page', totalPages)
   }, [dispatch, genresIds, isFilter]);
 
   // infinite scroll
@@ -78,6 +82,7 @@ export default function Movies() {
     dispatch(fetchMoreMovies(curPage));
     console.log("hello", curPage);
   };
+
   return (
     <div className="mx-auto max-w-screen-xl">
       <Filterbar isFilter={isFilter} setIsFilter={setIsFilter} setGenresIds={setGenresIds} />
@@ -87,7 +92,7 @@ export default function Movies() {
         </span>{" "}
         Movie
       </h1>
-      <MovieList />
+      <MovieList totalPages={totalPages}/>
       {/* <div className="grid grid-cols-5 gap-4 ">
         <Suspense fallback={<Loading />}>
           {createPopularMovieList(movies)}

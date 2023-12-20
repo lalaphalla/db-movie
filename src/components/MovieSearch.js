@@ -11,7 +11,7 @@ export default function MovieSearch() {
 
   return (
 
-    <form onSubmit={handleSearch}>
+    <form onSubmit={handleSearch} className="w-full sm:w-76 lg:w-96">
 {/* <form className="mt-4"> */}
       <label
         for="default-search"

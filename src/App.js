@@ -12,6 +12,7 @@ import Loading from "./components/Loading";
 import MovieDetail from "./components/MovieDetail";
 import TvShowDetail from "./components/TvShowDetail";
 import MovieListDemo from "./components/MovielistDemo";
+import Navbar from "./components/NavDemo";
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
 function MainLayout() {
   return (
     <>
-      <MyNav />
+      <MyNav /> 
       <Outlet />
       <MyFooter />
     </>
