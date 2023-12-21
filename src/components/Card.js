@@ -4,6 +4,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Link } from "react-router-dom";
 import { API_POSTER_PATH } from "../utils/constant";
+import defaultImage from "../assets/500x750.png"
 
 export default function Card({
   id,
@@ -13,6 +14,12 @@ export default function Card({
   poster_path,
 }) {
   let percentage = Math.round(vote_average * 10); 
+
+  const getThumbnail = () => {
+    return poster_path
+      ? API_POSTER_PATH + poster_path
+      : defaultImage ;
+  };
   // let formmatedDate = null;
   // const releaseDate = release_date ? new Date(release_date) : "";
   // // const releaseDate = formatDate(release_date);
@@ -36,7 +43,9 @@ export default function Card({
       <Link to={`/movie/${id}`}>
         <img
           className="w-full rounded-t-lg"
-          src={API_POSTER_PATH + poster_path}
+          // src={API_POSTER_PATH + poster_path}
+           src={getThumbnail()}
+
           alt="poster"
         />
       </Link>

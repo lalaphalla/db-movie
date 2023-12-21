@@ -12,6 +12,7 @@ import CardCast from "../components/CardCast";
 import { fetchCastById } from "../services/moviesAction";
 import TrailerModal from "../components/TrailerModal";
 import { API_BACKDROP_PATH, API_POSTER_PATH } from "../utils/constant";
+import defaultImage from "../assets/500x750.png";
 
 export default function MovieDetail() {
   const { id } = useParams();
@@ -28,6 +29,11 @@ export default function MovieDetail() {
   const finalTrailer = "Final Trailer";
   const officialTrailer = "Official Trailer";
   const trailer = "Trailer";
+  const getThumbnail = () => {
+    return movieDetail.poster_path
+      ? API_POSTER_PATH + movieDetail.poster_path
+      : defaultImage;
+  };
 
   const trailerKey = movieTrailer.find(
     (movie) =>
@@ -43,7 +49,7 @@ export default function MovieDetail() {
   //   console.log(trailerKey);
   // }
   useEffect(() => {
-      fetchCastById(id).then((res) => setCasts(res.cast.slice(0, 7)));
+    fetchCastById(id).then((res) => setCasts(res.cast.slice(0, 7)));
     // getMovieDetail(id).then(res => setMovieDetail(res.data) )
     dispatch(fetchMovieDetail(id));
     dispatch(fetchMovieTrailer(id));
@@ -70,28 +76,29 @@ export default function MovieDetail() {
             {/* <div className="absolute w-full h-[320px] bg-black bg-opacity-50" ></div> */}
             {/* content */}
             <div className="relative mx-auto flex max-w-screen-xl pb-8  ">
-              <div className="w-1/4 py-8">
-                {movieDetail.poster_path && (
+              <div className="w-1/4 py-8"> 
                   <img
                     // className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
                     className="rounded-t-lg object-fill"
-                    src={API_POSTER_PATH + movieDetail.poster_path}
+                    // src={API_POSTER_PATH + movieDetail.poster_path}
+                    // src={defaultImage}
+                    src={getThumbnail()}
                     alt="poster"
-                  />
-                )}
+                  /> 
               </div>
+              
               <div className="ml-6 mt-10 w-3/4 text-white">
-                <h3 className="text-xl font-bold">{movieDetail.title}</h3>
-                <ul>
+                <h3 className="mb-2 text-2xl font-bold">{movieDetail.title}</h3>
+                <ul className="mb-4">
                   <li> {movieDetail.release_date}</li>
                   <li>
                     {" "}
                     {movieDetail.genres &&
                       movieDetail.genres.map((genre) => genre.name + " ")}{" "}
                   </li>
-                  <li>runtime:{`${hours}h ${minutes}m`}</li>
+                  <li>Duration: {`${hours}h ${minutes}m`}</li>
                 </ul>
-                <div className="flex items-center">
+                <div className="mb-6 flex items-center">
                   <div className="mr-2 w-16">
                     <CircularProgressbar
                       value={percentage}
@@ -104,14 +111,15 @@ export default function MovieDetail() {
                   {trailerKey && <TrailerModal videoId={trailerKey.key} />}{" "}
                 </div>
                 <div className="w-3/4">
-                  <h3>Overview</h3>
+                  <h3 className="text-xl font-bold">Overview</h3>
                   <p>{movieDetail.overview}</p>
                 </div>
               </div>
             </div>
           </div>
+          
           <div className="mx-auto max-w-screen-xl bg-white pb-3">
-            <h3 className="text-2xl font-bold mt-4">Top Billed Cast</h3>
+            <h3 className="mt-4 text-2xl font-bold">Top Billed Cast</h3>
             <div className="mt-4 grid grid-cols-7 gap-4">
               {casts.length > 0 &&
                 casts.map((cast) => (

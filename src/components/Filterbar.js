@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ButtonFilter from "./ui/ButtonFilter";
 import { API_URL } from "../utils/constant";
 
-export default function Filterbar({ isFilter, setIsFilter, setGenresIds }) {
+export default function Filterbar({ isFilter, setIsFilter, setGenresIds, category }) {
   const [genres, setGenres] = useState([{ id: 0 }, { name: "" }]);
   //get id from genres [1,2,3]
   const [filterGenres, setFilterGenres] = useState([]);
@@ -16,9 +16,9 @@ export default function Filterbar({ isFilter, setIsFilter, setGenresIds }) {
       }, {}),
   );
 
-  const fetchGeners = async () => {
+  const fetchGeners = async (category) => {
     const response = await fetch(
-      `${API_URL}genre/movie/list?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`,
+      `${API_URL}genre/${category}/list?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`,
     ).then((res) => res.json());
     return response;
   };
@@ -85,7 +85,7 @@ export default function Filterbar({ isFilter, setIsFilter, setGenresIds }) {
   //       return response;
   // }
   useEffect(() => {
-    fetchGeners().then((res) => setGenres(res.genres));
+    fetchGeners(category).then((res) => setGenres(res.genres));
     console.log(buttonStates && buttonStates, "button state");
     // isFilter && fetchMoviesByGenres()
   }, []);

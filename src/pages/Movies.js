@@ -11,6 +11,8 @@ import {
 import Loading from "../components/Loading";
 import { MovieList } from "../components/MovieList";
 import Filterbar from "../components/Filterbar";
+import ScrollToTopButton from "../components/ScrollToTopButton";
+
 
 export default function Movies() {
   const dispatch = useDispatch();
@@ -22,6 +24,7 @@ export default function Movies() {
   const [isFilter, setIsFilter] = useState(false)
   const [genresIds, setGenresIds] = useState('')
   const observer = useRef();
+  const category = "movie"
 
   useEffect(() => {
     // !isFilter ? dispatch(fetchAllMovies()) : dispatch(fetchMoviesByGenres(genresIds))
@@ -88,14 +91,16 @@ export default function Movies() {
 
   return (
     <div className="mx-auto max-w-screen-xl">
-      <Filterbar isFilter={isFilter} setIsFilter={setIsFilter} setGenresIds={setGenresIds} />
+      <Filterbar category={category} isFilter={isFilter} setIsFilter={setIsFilter} setGenresIds={setGenresIds} />
       <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
         <span className="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">
           Popular
         </span>{" "}
         Movie
       </h1>
+      
       {movies && <MovieList movies={movies} totalPages={totalPages} genresIds={genresIds}/> }
+      <ScrollToTopButton />
       {/* <div className="grid grid-cols-5 gap-4 ">
         <Suspense fallback={<Loading />}>
           {createPopularMovieList(movies)}

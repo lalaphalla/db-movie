@@ -1,38 +1,38 @@
-import React, { useEffect } from 'react'
-import { fetchPopularTV } from '../redux/actions/movieActions';
-import { useDispatch, useSelector } from 'react-redux'; 
-import TvCard from '../components/TvCard';
+import React, { useEffect, useState } from "react";
+import { fetchPopularTV } from "../redux/actions/movieActions";
+import { useDispatch, useSelector } from "react-redux";
+import TvCard from "../components/TvCard";
+import TvList from "../components/TvList";
+import Filterbar from "../components/Filterbar";
 
 export default function TvShows() {
-    
   const dispatch = useDispatch();
-  let { tvshow } = useSelector((state) => state.movieR);
-    
-  useEffect(() => { 
-    dispatch(fetchPopularTV('popular'));
+  let { tvShows } = useSelector((state) => state.movieR);
+  let { isLoading } = useSelector((state) => state.movieR);
+  const [genresIds, setGenresIds] = useState("");
+  const [isFilter, setIsFilter] = useState(false)
+  const category = "tv"
+
+
+  useEffect(() => {
+    // dispatch(fetchMoviesByGenres(genresIds));
+    // dispatch(fetchTotalsPage(genresIds));
+    console.log(genresIds);
+
+    dispatch(fetchPopularTV(genresIds));
   }, []);
+
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="mx-auto max-w-screen-xl">
+      <Filterbar category={category} isFilter={isFilter} setIsFilter={setIsFilter} setGenresIds={setGenresIds} />
+
       <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+        <span className="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">
           Popular
         </span>{" "}
         TV Show
       </h1>
-
-      <div className="grid grid-cols-5 gap-4">
-        {tvshow.length > 0 &&
-          tvshow.map((tvshow) => (
-            <TvCard
-              key={tvshow.id}
-              id={tvshow.id}
-              title={tvshow.name}
-              vote_average={tvshow.vote_average}
-              release_date={tvshow.first_air_date}
-              poster_path={tvshow.poster_path}
-            />
-          ))}
-      </div>
+      <TvList tvShows={tvShows} isLoading={isLoading} />
     </div>
-  )
+  );
 }

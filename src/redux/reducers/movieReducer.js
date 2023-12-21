@@ -8,7 +8,7 @@ const initialState = {
   trendingMovies: [],
   upComingMovies: [],
   topRatedMovies: [],
-  tvshow: [],
+  tvShows: [],
   movieDetail: {},
   movieTrailer: [],
   tvDetail: {},
@@ -56,7 +56,7 @@ export const movieReducer = (state = initialState, action) => {
       return { ...state, topRatedMovies: payload, isLoading: false };
 
     case actionType.GET_POPULAR_TV:
-      return { ...state, tvshow: payload, isLoading: false };
+      return { ...state, tvShows: payload, isLoading: false };
 
      case actionType.GET_MOVIE_TRAILER:
       return { ...state, movieTrailer: payload, isLoading: false };

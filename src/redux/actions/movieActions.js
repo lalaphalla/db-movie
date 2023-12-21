@@ -5,95 +5,105 @@ import { actionType } from "./actionTypes";
 export const fetchPopularMovies = (limit, page) => {
   return (dispatch) => {
     axios(
-      `${API_URL}movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=${page}`
+      `${API_URL}movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=${page}`,
     ).then((res) =>
       dispatch({
         type: actionType.GET_MOVIES,
         payload: res.data.results.slice(0, limit),
-      })
+      }),
     );
   };
 };
 export const fetchAllMovies = () => {
   return (dispatch) => {
     axios(
-      `${API_URL}movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=1`
+      `${API_URL}movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=1`,
     ).then((res) =>
       dispatch({
         type: actionType.GET_MOVIES,
         // payload: res.data.results,
         payload: res.data,
-      })
+      }),
     );
   };
 };
 
-
-
 export const fetchMoviesByGenres = (genresIds) => {
   return (dispatch) => {
     axios(
-      `${API_URL}discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&sort_by=popularity.desc&page=1&with_genres=${genresIds} `
+      `${API_URL}discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&sort_by=popularity.desc&page=1&with_genres=${genresIds} `,
     ).then((res) =>
       dispatch({
         type: actionType.GET_MOVIES,
         payload: res.data.results,
         // payload: res.data,
-      })
+      }),
     );
   };
 };
 export const fetchTotalsPage = (genresIds) => {
   return (dispatch) => {
     axios(
-      `${API_URL}discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&sort_by=popularity.desc&page=1&with_genres=${genresIds} `
+      `${API_URL}discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&sort_by=popularity.desc&page=1&with_genres=${genresIds} `,
     ).then((res) =>
       dispatch({
         type: actionType.GET_TOTAL_PAGES,
         payload: res.data.total_pages,
         // payload: res.data,
-      })
+      }),
     );
   };
 };
 
-export const fetchMoreMovies = (page,genresIds) => {
+export const fetchMoreMovies = (page, genresIds) => {
   return (dispatch) => {
     axios(
       `${API_URL}discover/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&sort_by=popularity.desc&with_genres=${genresIds}&page=${
         page + 1
-      }`
+      }`,
     ).then((res) =>
       dispatch({
         type: actionType.GET_MORE_MOVIES,
         payload: res.data.results,
         // payload: res.data,
-      })
+      }),
     );
   };
 };
 
+export const fetchPopularTV = (genresIds) => {
+  return (dispatch) => {
+    axios(
+      `${API_URL}discover/tv?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&sort_by=popularity.desc&page=1&with_genres=${genresIds}`,
+    ).then((res) =>
+      dispatch({
+        type: actionType.GET_POPULAR_TV,
+        payload: res.data.results,
+      }),
+    );
+  };
+};
 export const fetchNowPlayingMovies = (limit) => {
   return (dispatch) => {
     axios(
-      `${API_URL}movie/now_playing?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`
+      `${API_URL}movie/now_playing?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`,
     ).then((res) =>
       dispatch({
         type: actionType.GET_NOWPLAYING_MOVIES,
         payload: res.data.results.slice(0, limit),
-      })
+      }),
     );
   };
 };
 export const fetchTopRatedMovies = (limit) => {
   return (dispatch) => {
     axios(
-      `${API_URL}movie/top_rated?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`
+      `${API_URL}movie/top_rated?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`,
     ).then((res) =>
       dispatch({
         type: actionType.GET_TOPRATED_MOVIES,
         payload: res.data.results.slice(0, limit),
-      })
+      }),
     );
   };
 };
@@ -101,62 +111,48 @@ export const fetchTopRatedMovies = (limit) => {
 export const fetchUpComingMovies = (limit) => {
   return (dispatch) => {
     axios(
-      `${API_URL}movie/upcoming?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`
+      `${API_URL}movie/upcoming?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1`,
     ).then((res) =>
       dispatch({
         type: actionType.GET_UPCOMING_MOVIES,
         payload: res.data.results.slice(0, limit),
-      })
+      }),
     );
   };
 };
 export const fetchMovieDetail = (id) => {
   return (dispatch) => {
     axios(
-      `${API_URL}movie/${id}?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`
+      `${API_URL}movie/${id}?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`,
     ).then((res) =>
       dispatch({
         type: actionType.GET_MOVIE_DETAIL,
         payload: res.data,
-      })
+      }),
     );
   };
 };
 export const fetchTvDetail = (id) => {
   return (dispatch) => {
     axios(
-      `${API_URL}tv/${id}?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`
+      `${API_URL}tv/${id}?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`,
     ).then((res) =>
       dispatch({
         type: actionType.GET_TV_DETAIL,
         payload: res.data,
-      })
+      }),
     );
   };
 };
 export const fetchTrendingMovies = (limit) => {
   return (dispatch) => {
     axios(
-      `${API_URL}trending/movie/day?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`
+      `${API_URL}trending/movie/day?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`,
     ).then((res) =>
       dispatch({
         type: actionType.GET_TRENDING_MOVIES,
         payload: res.data.results.slice(0, limit),
-      })
-    );
-  };
-};
-
-
-export const fetchPopularTV = (category) => {
-  return (dispatch) => {
-    axios(
-      `${API_URL}tv/${category}?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=1`
-    ).then((res) =>
-      dispatch({
-        type: actionType.GET_POPULAR_TV,
-        payload: res.data.results,
-      })
+      }),
     );
   };
 };
@@ -164,26 +160,26 @@ export const fetchPopularTV = (category) => {
 export const fetchSearchMovie = (query) => {
   return (dispatch) => {
     axios(
-      ` ${API_URL}search/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&query=${query}`
+      ` ${API_URL}search/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&query=${query}`,
     ).then((res) =>
       dispatch({
         type: actionType.SEARCH_MOVIE,
         payload: res.data.results.sort(function (a, b) {
           return new Date(b.release_date) - new Date(a.release_date);
         }),
-      })
+      }),
     );
   };
 };
 export const fetchRandomMovie = () => {
   return (dispatch) => {
     axios(
-      `${API_URL}movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=1`
+      `${API_URL}movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=1`,
     ).then((res) =>
       dispatch({
         type: actionType.GET_RANDOM_MOVIE,
         payload: res.data.results[Math.floor(Math.random() * 19)],
-      })
+      }),
     );
   };
 };
@@ -211,18 +207,18 @@ export const fetchRandomMovie = () => {
 export const fetchMovieTrailer = (id) => {
   return (dispatch) => {
     axios(
-      `${API_URL}movie/${id}/videos?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`
+      `${API_URL}movie/${id}/videos?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`,
     ).then((res) =>
       dispatch({
         type: actionType.GET_MOVIE_TRAILER,
         payload: res.data.results,
-      })
+      }),
     );
   };
 };
 export const clearMovieDetail = () => {
-  return{ type: 'CLEAR_MOVIE_DETAILS' }
-}
+  return { type: "CLEAR_MOVIE_DETAILS" };
+};
 
 // return (dispatch) => {
 //     axios(`${API_URL}movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=${currentPage + 1}`)
