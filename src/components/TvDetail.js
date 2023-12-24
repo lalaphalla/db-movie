@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTvDetail } from "../redux/actions/movieActions";
+import { clearTvDetail, fetchTvDetail } from "../redux/actions/movieActions";
 import Loading from "../components/Loading";
 import { useParams } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
@@ -43,7 +43,11 @@ export default function TvDetail() {
   useEffect(() => {
     fetchTvCastById(id).then((res) => setCasts(res.cast.slice(0, 7)));
     dispatch(fetchTvDetail(id));
-  }, []);
+
+    return () => {
+      dispatch(clearTvDetail());
+    };
+  }, [dispatch]);
   return (
     <div className="">
       {isLoading ? (

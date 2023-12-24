@@ -7,7 +7,7 @@ import { API_URL } from "../utils/constant";
 
 const seleteMovie = (state) => state.todos;
 
-export const MovieList = ({  movies, totalPages, genresIds }) => {
+export const MovieList = ({ movies, totalPages, genresIds }) => {
   const dispatch = useDispatch();
   let { isLoading } = useSelector((state) => state.movieR);
   // let { movies } = useSelector((state) => state.movieR);
@@ -16,21 +16,21 @@ export const MovieList = ({  movies, totalPages, genresIds }) => {
   // const isButtonDisabled = curPage >= itemPerPage;
 
   const createPopularMovieList = (movieList) => {
-
     return isLoading
       ? "loading"
-      : movieList && movieList.map((movie) => {
-        return (
-          <Card
-            key={movie.id}
-            id={movie.id}
-            title={movie.title}
-            vote_average={movie.vote_average}
-            release_date={movie.release_date}
-            poster_path={movie.poster_path}
-          />
-        );
-      });
+      : movieList &&
+          movieList.map((movie) => {
+            return (
+              <Card
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                vote_average={movie.vote_average}
+                release_date={movie.release_date}
+                poster_path={movie.poster_path}
+              />
+            );
+          });
   };
   const fetchPageResult = async () => {
     const response = await fetch(
@@ -38,7 +38,6 @@ export const MovieList = ({  movies, totalPages, genresIds }) => {
     ).then((res) => res.json());
     return response;
   };
-
 
   const handleLoadMore = () => {
     console.log(movies);
@@ -49,27 +48,27 @@ export const MovieList = ({  movies, totalPages, genresIds }) => {
   };
 
   useEffect(() => {
-
     // dispatch(fetchAllMovies());
     // fetchPageResult().then((res) => setItemPerPage(res.total_pages));
     // movies && setTotalPages(movies.total_pages);
 
-    movies &&
-      console.log("movies list page", curPage, movies.total_pages);
+    movies && console.log("movies list page", curPage, movies.total_pages);
   }, [dispatch]);
 
   // const pageNumber = movies.total_pages
 
   return (
     <>
-      <h1>Page number: {movies && curPage}  Total Pages: {movies && totalPages}</h1>
+      <h1>
+        Page number: {movies && curPage} Total Pages: {movies && totalPages}
+      </h1>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5 ">
         {createPopularMovieList(movies)}
       </div>
       <button
         type="button"
         onClick={handleLoadMore}
-        disabled={curPage === totalPages}
+        disabled={curPage == totalPages}
         className="btnLoadmore mb-2 me-2 mt-6 w-full rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
         {curPage === totalPages ? "No More Movies" : "Load More"}

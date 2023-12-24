@@ -73,6 +73,10 @@ export const movieReducer = (state = initialState, action) => {
       // return { ...state, currentPage: state.currentPage + 1, movies:payload };
       return { ...state, currentPage: state.currentPage + 1, movies: [...state.movies, ...action.payload] };
 
+    case actionType.GET_MORE_TVS:
+      // return { ...state, currentPage: state.currentPage + 1, movies:payload };
+      return { ...state, currentPage: state.currentPage + 1, tvShows: [...state.tvShows, ...action.payload] };
+
     case actionType.GET_RANDOM_MOVIE:
       return { ...state, randomMovie: payload };
 
@@ -83,7 +87,11 @@ export const movieReducer = (state = initialState, action) => {
       return { ...state, personCredits: payload};
 
       case actionType.CLEAR_MOVIE_DETAILS: 
-      return {...state, movieDetail: {}, isLoading:false }
+      return {...state, movieDetail: {}, isLoading:true }
+      case actionType.CLEAR_TV_DETAILS: 
+      return {...state, tvDetail: {}, isLoading:true }
+
+
 
     default:
       return state;

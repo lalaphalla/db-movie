@@ -41,6 +41,7 @@ export const fetchMoviesByGenres = (genresIds) => {
     );
   };
 };
+
 export const fetchTotalsPage = (genresIds) => {
   return (dispatch) => {
     axios(
@@ -64,6 +65,21 @@ export const fetchMoreMovies = (page, genresIds) => {
     ).then((res) =>
       dispatch({
         type: actionType.GET_MORE_MOVIES,
+        payload: res.data.results,
+        // payload: res.data,
+      }),
+    );
+  };
+};
+export const fetchMoreTvs = (page, genresIds) => {
+  return (dispatch) => {
+    axios(
+      `${API_URL}discover/tv?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&sort_by=popularity.desc&with_genres=${genresIds}&page=${
+        page + 1
+      }`,
+    ).then((res) =>
+      dispatch({
+        type: actionType.GET_MORE_TVS,
         payload: res.data.results,
         // payload: res.data,
       }),
@@ -218,6 +234,9 @@ export const fetchMovieTrailer = (id) => {
 };
 export const clearMovieDetail = () => {
   return { type: "CLEAR_MOVIE_DETAILS" };
+};
+export const clearTvDetail = () => {
+  return { type: "CLEAR_TV_DETAILS" };
 };
 
 // return (dispatch) => {

@@ -20,7 +20,8 @@ export default function TvShows() {
     console.log(genresIds);
 
     dispatch(fetchPopularTV(genresIds));
-  }, []);
+    
+  }, [dispatch,genresIds]);
 
   return (
     <div className="mx-auto max-w-screen-xl">
@@ -32,7 +33,7 @@ export default function TvShows() {
         </span>{" "}
         TV Show
       </h1>
-      <TvList tvShows={tvShows} isLoading={isLoading} />
+      <TvList tvShows={tvShows} genresIds={genresIds} isLoading={isLoading} />
     </div>
   );
 }

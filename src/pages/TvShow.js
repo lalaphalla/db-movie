@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTvDetail } from "../redux/actions/movieActions";
+import { clearTvDetail, fetchTvDetail } from "../redux/actions/movieActions";
 import Loading from "../components/Loading";
 import { useParams } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
@@ -19,19 +19,22 @@ export default function TvShow() {
   const minutes = tvDetail.runtime % 60;
   const percentage = Math.round(tvDetail.vote_average * 10);
 
-  useEffect(() => {  
-
+  useEffect(() => {
     dispatch(fetchTvDetail(id));
+
+    return () => {
+      dispatch(clearTvDetail());
+    };
   }, []);
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="mx-auto max-w-screen-xl">
       {isLoading ? (
         <Loading />
       ) : (
         <div>
           <div className="flex">
             <img
-              className="rounded-t-lg w-48"
+              className="w-48 rounded-t-lg"
               src={` http://image.tmdb.org/t/p/w500/${tvDetail.poster_path}`}
               alt="poster"
             />
@@ -54,7 +57,7 @@ export default function TvShow() {
             </div>
           </div>
 
-          <div className="grid grid-cols-7 gap-4 max-w-screen-xl mx-auto ">
+          <div className="mx-auto grid max-w-screen-xl grid-cols-7 gap-4 ">
             {casts.length > 0 &&
               casts.map((cast) => (
                 <CardCast

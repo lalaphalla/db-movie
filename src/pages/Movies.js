@@ -14,12 +14,11 @@ import Filterbar from "../components/Filterbar";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 
 
-export default function Movies() {
+export default function Movies({movieType}) {
   const dispatch = useDispatch();
   let { isLoading } = useSelector((state) => state.movieR);
   let { movies, totalPages } = useSelector((state) => state.movieR);
-  const [curPage, setCurPage] = useState(1);
-  // const [totalPages, setTotalPages] = useState(0);
+  const [curPage, setCurPage] = useState(1); 
   const isButtonDisabled = curPage >= 5;
   const [isFilter, setIsFilter] = useState(false)
   const [genresIds, setGenresIds] = useState('')

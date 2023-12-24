@@ -10,9 +10,9 @@ personCredits.sort(comparePop)
 const personCreditSlice =  personCredits.slice(0,8)
 
   return (
-    <div>
+    <div className='mx-auto max-w-screen-xl'>
         <h2 className='text-2xl font-bold'>Know For</h2>
-        <div className='grid grid-cols-4 gap-4'>        
+        <div className='grid grid-cols-4 gap-4 mb-2'>        
         {personCreditSlice && personCreditSlice.map((credit) => (
             <CardCreditMovie key={credit.id} id={credit.id} title={credit.title}  poster_path={credit.poster_path}/>
         ))}

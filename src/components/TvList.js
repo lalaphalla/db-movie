@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import TvCard from "./TvCard";
 import Loading from "./Loading";
+import { useDispatch } from "react-redux";
+import { fetchMoreTvs } from "../redux/actions/movieActions";
 
-export default function TvList({tvShows, isLoading}) {
+export default function TvList({tvShows, totalPages, genresIds, isLoading}) {
+  const [curPage, setCurPage] = useState(1);
+  const dispatch = useDispatch();
+
+
   const createTvList = (tvShowsList) => {
     return (
       isLoading ? <Loading /> :
@@ -20,6 +26,10 @@ export default function TvList({tvShows, isLoading}) {
     );
   };
   const handleLoadMore = () => {
+    setCurPage(curPage + 1);
+    if (isLoading) return;
+    dispatch(fetchMoreTvs(curPage, genresIds));
+
     // console.log(movies);
     // setCurPage(curPage + 1);
     // if (isLoading) return;
