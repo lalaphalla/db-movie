@@ -125,6 +125,7 @@ export default function MovieDetail() {
                 casts.map((cast) => (
                   <CardCast
                     key={cast.id}
+                    id={cast.id}
                     name={cast.name}
                     profile_path={cast.profile_path}
                     character={cast.character}

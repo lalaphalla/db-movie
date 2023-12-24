@@ -14,6 +14,8 @@ const initialState = {
   tvDetail: {},
   searchMovies: [],
   randomMovie: {},
+  personDetail: {},
+  personCredits: [],
   currentPage: 1,
   itemsPerPage: 10,
   isLoading: true,
@@ -73,6 +75,12 @@ export const movieReducer = (state = initialState, action) => {
 
     case actionType.GET_RANDOM_MOVIE:
       return { ...state, randomMovie: payload };
+
+      case actionType.GET_PERSON_DETAIL:
+      return { ...state, personDetail: payload, isLoading:false };
+
+      case actionType.GET_PERSON_CREDITS:
+      return { ...state, personCredits: payload};
 
       case actionType.CLEAR_MOVIE_DETAILS: 
       return {...state, movieDetail: {}, isLoading:false }

@@ -12,7 +12,7 @@ export default function PersonCard({ id, name, profile_path, known_for }) {
         />
       </Link>
       <div className="p-5">
-        <a href="#"></a>
+        <Link to={`/person/${id}`}></Link>
         <p className="mb-3 font-bold text-gray-700 dark:text-gray-400">{name}</p>
         <p className="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400">
           {known_for.length >0 && known_for.map((tv) => tv.name !== undefined ? tv.name + ", " : tv.title + ", ")}

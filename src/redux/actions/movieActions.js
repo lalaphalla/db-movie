@@ -228,3 +228,28 @@ export const clearMovieDetail = () => {
 //         }))
 // }
 // }
+
+export const fetchPersonDetail = (id) => {
+  return (dispatch) => {
+    axios(
+      `${API_URL}person/${id}?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US`,
+    ).then((res) =>
+      dispatch({
+        type: actionType.GET_PERSON_DETAIL,
+        payload: res.data,
+      }),
+    );
+  };
+};
+export const fetchPersonCredits = (id) => {
+  return (dispatch) => {
+    axios(
+      `${API_URL}person/${id}/movie_credits?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&sort_by=popularity.desc`,
+    ).then((res) =>
+      dispatch({
+        type: actionType.GET_PERSON_CREDITS,
+        payload: res.data.cast,
+      }),
+    );
+  };
+};

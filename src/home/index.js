@@ -17,7 +17,7 @@ import InputSearch from "../components/ui/InputSearch";
 import CardTrailer from "../components/CardTrailer";
 
 export default function Home() {
-  const limit = 7;
+  const limit = 8;
   const dispatch = useDispatch();
 
   let {
@@ -52,6 +52,7 @@ export default function Home() {
     // randomMovie = getRandomMovie();
     //  console.log(randomMovie1);
   }, []);
+ 
 
   const createMovieList = (movie) => {
     return (
@@ -115,7 +116,8 @@ export default function Home() {
                 More
               </button>
             </div>
-            <div className="mx-auto grid grid-cols-2 gap-4 sm:grid-cols-4 md:max-w-screen-xl md:grid-cols-7 lg:max-w-screen-2xl ">
+
+            <div className="mx-auto grid grid-cols-2 gap-4 sm:grid-cols-4 md:max-w-screen-xl md:grid-cols-4 lg:max-w-screen-2xl ">
               <Suspense fallback={<Loading />}>
                 {nowPlayingMovies.length > 0 &&
                   nowPlayingMovies.map((movie) => createMovieList(movie))}
@@ -159,7 +161,7 @@ export default function Home() {
                 More
               </button>
             </div>
-            <div className="mx-auto grid  gap-4 grid-cols-2 sm:grid-cols-4 md:max-w-screen-xl md:grid-cols-7 lg:max-w-screen-2xl ">
+            <div className="mx-auto grid  gap-4 grid-cols-2 sm:grid-cols-4 md:max-w-screen-xl md:grid-cols-4  lg:max-w-screen-2xl ">
               <Suspense fallback={<Loading />}>
                 {movies.length > 0 &&
                   movies.map((movie) => createMovieList(movie))}
@@ -183,7 +185,7 @@ export default function Home() {
                   More
                 </button>
               </div>
-              <div className="mx-auto grid  grid-cols-2 gap-4 sm:grid-cols-4 md:max-w-screen-xl md:grid-cols-7 lg:max-w-screen-2xl ">
+              <div className="mx-auto grid  grid-cols-2 gap-4 sm:grid-cols-4 md:max-w-screen-xl md:grid-cols-4 lg:max-w-screen-2xl ">
                 <Suspense fallback={<Loading />}>
                   {topRatedMovies.length > 0 &&
                     topRatedMovies.map((movie) => createMovieList(movie))}

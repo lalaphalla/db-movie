@@ -14,6 +14,7 @@ import TvShowDetail from "./components/TvShowDetail";
 import MovieListDemo from "./components/MovielistDemo";
 import Navbar from "./components/NavDemo";
 import TvDetail from "./components/TvDetail";
+import Person from "./pages/Person";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/tv" element={<TvShows />} />
         <Route path="/people" element={<People />} />
         <Route path="/tv/:id" element={<TvDetail />} />
+        <Route path="/person/:id" element={<Person />} />
         <Route path="/search/movie" element={<Search />} />
         <Route path="/loading" element={<Loading />}/>
 
