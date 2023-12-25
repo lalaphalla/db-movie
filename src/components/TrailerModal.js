@@ -1,7 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Modal from "react-modal";
 import YoutubePlayer from "./YoutubePlayer";
+
+Modal.setAppElement('#root')
 
 const customStyles = {
   content: {
@@ -19,8 +20,7 @@ const customStyles = {
 // Modal.setAppElement('#yourAppElement');
 
 export default function TrailerModal({ videoId }) {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
+  const [modalIsOpen, setIsOpen] = React.useState(false); 
   function openModal() {
     setIsOpen(true);
   }
@@ -33,7 +33,7 @@ export default function TrailerModal({ videoId }) {
   function closeModal() {
     setIsOpen(false);
   }
-
+ 
   return (
     <div>
       <button

@@ -21,7 +21,7 @@ export default function People() {
         People
       </h1>
 
-      <div className="grid grid-cols-5  gap-4 ">
+      <div className="grid grid-cols-3 md:grid-cols-5  gap-4 ">
         {people.length > 0 &&
           people.map((person) => (
             <PersonCard

@@ -97,7 +97,7 @@ export default function Home() {
               </span>{" "}
               Trailer
             </h3>
-            <div className="grid grid-cols-3 gap-8 px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8">
               {trendingMovies.length > 0 &&
                 trendingMovies.map((movie) => (
                   <CardTrailer
