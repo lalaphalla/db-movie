@@ -90,8 +90,8 @@ export const movieReducer = (state = initialState, action) => {
       return {...state, movieDetail: {}, isLoading:true }
       case actionType.CLEAR_TV_DETAILS: 
       return {...state, tvDetail: {}, isLoading:true }
-
-
+      case actionType.CLEAR_PERSON_DETAILS: 
+      return {...state, personDetail: {}, isLoading:true } 
 
     default:
       return state;

@@ -16,6 +16,9 @@ import ModalTest from "../components/ModalTest";
 import InputSearch from "../components/ui/InputSearch";
 import CardTrailer from "../components/CardTrailer";
 
+const Heavy = lazy(() => import("../components/Card"));
+const RandomPopular = lazy(() => import("../components/Hero"));
+
 export default function Home() {
   const limit = 8;
   const dispatch = useDispatch();
@@ -23,23 +26,12 @@ export default function Home() {
   let {
     movies,
     trendingMovies,
-    nowPlayingMovies,
-    upComingMovies,
+    nowPlayingMovies, 
     topRatedMovies,
     randomMovie,
     isLoading,
-  } = useSelector((state) => state.movieR);
-
-  // const getRandomMovie = () => {
-  //   return (
-  //     movies.length > 0 && movies[Math.floor(Math.random() * movies.length)]
-  //   );
-  // };
-
-  const [randomMovie2, setRandomMovie2] = useState({});
-
-  const randomMovie1 = movies[Math.floor(Math.random() * movies.length)];
-
+  } = useSelector((state) => state.movieR); 
+ 
   useEffect(() => {
     dispatch(fetchTrendingMovies(3));
     dispatch(fetchPopularMovies(limit, 1));
@@ -48,15 +40,12 @@ export default function Home() {
     dispatch(fetchTopRatedMovies(limit));
     if (randomMovie) dispatch(fetchRandomMovie());
     else return;
-    // setRandomMovie2(movies && movies[Math.floor(Math.random() * movies.length)])
-    // randomMovie = getRandomMovie();
-    //  console.log(randomMovie1);
   }, []);
  
 
   const createMovieList = (movie) => {
     return (
-      <Card
+      <Heavy
         key={movie.id}
         id={movie.id}
         title={movie.title}
@@ -81,8 +70,8 @@ export default function Home() {
       });
   };
 
-  const Heavy = lazy(() => import("../components/Card"));
-  const RandomPopular = lazy(() => import("../components/Hero"));
+
+
   return (
     <section className="">
       {isLoading ? (

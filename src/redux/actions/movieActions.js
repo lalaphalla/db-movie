@@ -176,13 +176,17 @@ export const fetchTrendingMovies = (limit) => {
 export const fetchSearchMovie = (query) => {
   return (dispatch) => {
     axios(
-      ` ${API_URL}search/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&query=${query}`,
+      ` ${API_URL}search/movie?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&query=${query}`,
     ).then((res) =>
       dispatch({
         type: actionType.SEARCH_MOVIE,
+        // payload: res.data.results
         payload: res.data.results.sort(function (a, b) {
-          return new Date(b.release_date) - new Date(a.release_date);
+          return b.popularity - a.popularity;
         }),
+        // payload: res.data.results.sort(function (a, b) {
+        //   return new Date(b.release_date) - new Date(a.release_date);
+        // }),
       }),
     );
   };
@@ -237,6 +241,9 @@ export const clearMovieDetail = () => {
 };
 export const clearTvDetail = () => {
   return { type: "CLEAR_TV_DETAILS" };
+};
+export const clearPersonDetail = () => {
+  return { type: actionType.CLEAR_PERSON_DETAILS };
 };
 
 // return (dispatch) => {

@@ -41,8 +41,7 @@ export default function CardTrailer({ id, title, backdrop_path }) {
   }
 
   useEffect(() => {
-    id && dispatch(fetchMovieTrailer(id));
-    id && console.log("CardTrailer", id);
+    id && dispatch(fetchMovieTrailer(id)); 
   }, []);
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
