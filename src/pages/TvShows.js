@@ -1,26 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { fetchPopularTV } from "../redux/actions/movieActions";
-import { useDispatch, useSelector } from "react-redux";
-import TvCard from "../components/TvCard";
+import { fetchPopularTV, fetchTotalsPage } from "../redux/actions/movieActions";
+import { useDispatch, useSelector } from "react-redux"; 
 import TvList from "../components/TvList";
 import Filterbar from "../components/Filterbar";
 
 export default function TvShows() {
   const dispatch = useDispatch();
-  let { tvShows } = useSelector((state) => state.movieR);
+  let { tvShows, totalPages } = useSelector((state) => state.movieR);
   let { isLoading } = useSelector((state) => state.movieR);
   const [genresIds, setGenresIds] = useState("");
   const [isFilter, setIsFilter] = useState(false)
-  const category = "tv"
-
-
-  useEffect(() => {
-    // dispatch(fetchMoviesByGenres(genresIds));
-    // dispatch(fetchTotalsPage(genresIds));
-    console.log(genresIds);
-
-    dispatch(fetchPopularTV(genresIds));
-    
+  const category = "tv" 
+  useEffect(() => {  
+    dispatch(fetchPopularTV(genresIds)); 
+    dispatch(fetchTotalsPage(genresIds))
   }, [dispatch,genresIds]);
 
   return (
@@ -33,7 +26,7 @@ export default function TvShows() {
         </span>{" "}
         TV Show
       </h1>
-      <TvList tvShows={tvShows} genresIds={genresIds} isLoading={isLoading} />
+      <TvList tvShows={tvShows} totalPages={totalPages} genresIds={genresIds} isLoading={isLoading} />
     </div>
   );
 }

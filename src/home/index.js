@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../components/Loading";
@@ -12,6 +12,7 @@ import {
   fetchTrendingMovies,
   fetchUpComingMovies,
 } from "../redux/actions/movieActions";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 
 const Heavy = lazy(() => import("../components/Card"));
 const RandomPopular = lazy(() => import("../components/Hero"));
@@ -70,20 +71,15 @@ export default function Home() {
             )}
           </Suspense>
 
-          <div className="mx-auto max-w-screen-2xl bg-white py-8">
+          <div className="mx-auto max-w-screen-2xl bg-white px-4 py-8">
             <div className="flex justify-between">
-              <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl">
-                <span className="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">
-                  Now Playing
+              <h1 className="font-lime text-4xl mb-4 text-gray-900 dark:text-white">
+                <span className="bg-gradient-to-r from-primary to-emerald-600 bg-clip-text text-transparent">
+                Now Playing
                 </span>{" "}
+                
                 Movies
-              </h1>
-              <button
-                type="button"
-                className="my-2 rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800"
-              >
-                More
-              </button>
+              </h1> 
             </div>
 
             <div className="mx-auto grid grid-cols-2 gap-4 sm:grid-cols-4 md:max-w-screen-xl md:grid-cols-4 lg:max-w-screen-2xl ">
@@ -95,8 +91,8 @@ export default function Home() {
           </div>
 
           <div className="bg-primary">
-            <h3 className="ml-4 py-4 text-3xl font-extrabold text-white dark:text-white md:text-5xl ">
-              <span className="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">
+            <h3 className="ml-4 pt-6 font-lime text-4xl font-extrabold text-white dark:text-white">
+              <span className="bg-gradient-to-r from-white to-emerald-600 bg-clip-text text-transparent">
                 Trending
               </span>{" "}
               Trailer
@@ -115,20 +111,14 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mx-auto max-w-screen-2xl bg-white py-8">
+          <div className="mx-auto max-w-screen-2xl bg-white px-4 py-8">
             <div className="flex justify-between">
-              <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl">
+              <h1 className="mb-4 font-lime text-4xl font-extrabold text-gray-900 dark:text-white">
                 <span className="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">
                   Popular
                 </span>{" "}
                 Movies
               </h1>
-              <button
-                type="button"
-                className="my-2 rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800"
-              >
-                More
-              </button>
             </div>
             <div className="mx-auto grid  gap-4 grid-cols-2 sm:grid-cols-4 md:max-w-screen-xl md:grid-cols-4  lg:max-w-screen-2xl ">
               <Suspense fallback={<Loading />}>
@@ -139,20 +129,15 @@ export default function Home() {
           </div>
 
           <div className="w-full bg-primary">
-            <div className="mx-auto max-w-screen-2xl py-8">
+            <div className="mx-auto max-w-screen-2xl py-8 px-4">
               <div className="flex justify-between">
-                <h1 className="mb-4 text-3xl font-extrabold text-white dark:text-white md:text-5xl">
+                <h1 className="mb-4 font-lime text-4xl font-extrabold text-white dark:text-white">
                   <span className="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">
                     Top Rated
                   </span>{" "}
                   Movies
                 </h1>
-                <button
-                  type="button"
-                  className="my-2 rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-bl focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800"
-                >
-                  More
-                </button>
+                
               </div>
               <div className="mx-auto grid  grid-cols-2 gap-4 sm:grid-cols-4 md:max-w-screen-xl md:grid-cols-4 lg:max-w-screen-2xl ">
                 <Suspense fallback={<Loading />}>
@@ -164,6 +149,7 @@ export default function Home() {
           </div>
         </div>
       )}
+      <ScrollToTopButton />
     </section>
   );
 }

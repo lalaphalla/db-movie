@@ -5,8 +5,6 @@ import defaultImage from "../../assets/500x750.png"
 
 export default function ImagePath({ path, type }) {
 
-
-
     const getThumbnail = () => {
         if (path) {
             switch (type) {

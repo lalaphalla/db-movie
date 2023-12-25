@@ -5,21 +5,27 @@ import MyNavLink from "./MyNavLink";
 import { initFlowbite } from "flowbite";
 
 export default function MyNav() {
-  const [isNavBarOpen, setNavBarOpen] = useState(false) 
+  const [isNavBarOpen, setNavBarOpen] = useState(false)
 
-  const toggleMenu =() =>{
+  const toggleMenu = () => {
     setNavBarOpen(!isNavBarOpen)
   }
-useEffect(()=>{
-  initFlowbite()
-},[])  
+  useEffect(() => {
+    initFlowbite()
+  }, [])
   return (
     <nav className="border-gray-200 bg-primary dark:bg-gray-900">
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
         <Link to="/">
-          <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-            <span class="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">
-              Movie-DB
+          <h1 className="font-press my-4 text-xl text-gray-900 dark:text-white md:text-5xl lg:text-2xl">
+          <svg xmlns="http://www.w3.org/2000/svg"
+            className="inline-block mr-2 mb-3"
+              height="38"
+              width="38" 
+              fill="#fff"
+              viewBox="0 0 512 512"><path d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM48 368v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H416zM48 240v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H416zM48 112v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM416 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H416zM160 128v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32H192z" /></svg>
+            <span className="text-white">        
+              MovieDB
             </span>
           </h1>
         </Link>

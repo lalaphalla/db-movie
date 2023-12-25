@@ -23,13 +23,13 @@ const ScrollToTopButton = () => {
   return (
     <button
       onClick={handleScrollToTop}
+      className="bg-secondary"
       style={{
         position: "fixed",
         bottom: "20px",
         right: "20px",  
         color: "#fff",
         border: "none",
-        backgroundColor: "gray",
         borderRadius: "10%",
         width: "40px",
         height: "40px",
@@ -39,7 +39,7 @@ const ScrollToTopButton = () => {
       }}
     >
       <svg
-        enable-background="new 0 0 32 32"
+        enableBackground="new 0 0 32 32"
         height="32px"
         id="Layer_1"
         version="1.1"

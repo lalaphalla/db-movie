@@ -17,8 +17,7 @@ export default function Search() {
     dispatch(fetchSearchMovie(query));
   }, [dispatch,query]);
   return (
-    <section className="max-w-screen-xl mx-auto grid grid-cols-1 gap-4">
-      result of {query}
+    <section className="max-w-screen-xl mx-auto grid grid-cols-1 gap-4 px-4"> 
       {searchMovies && searchMovies.map((movie)=>(
         // <p>{movie.title}</p>
       <CardSearch 

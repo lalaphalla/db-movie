@@ -5,14 +5,10 @@ import MyFooter from "./components/MyFooter";
 import Home from "./home";
 import Movies from "./pages/Movies";
 import TvShows from "./pages/TvShows";
-import TvShow from "./pages/TvShow";
 import People from "./pages/Peoples";
 import Search from "./pages/Search";
 import Loading from "./components/Loading";
 import MovieDetail from "./components/MovieDetail";
-import TvShowDetail from "./components/TvShowDetail";
-import MovieListDemo from "./components/MovielistDemo";
-import Navbar from "./components/NavDemo";
 import TvDetail from "./components/TvDetail";
 import Person from "./pages/Person";
 

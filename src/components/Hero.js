@@ -3,11 +3,8 @@ import { Link } from "react-router-dom";
 import { API_BACKDROP_PATH } from "../utils/constant";
 
 export default function Hero({ id, title, overview, backdrop_path, poster_path }) {
-  const imageUrl = API_BACKDROP_PATH + backdrop_path
-  console.log(imageUrl && imageUrl);
-  useEffect(() => {
-    console.log(backdrop_path, title);
-  }, []);
+  const imageUrl = backdrop_path && API_BACKDROP_PATH + backdrop_path
+  
   return (
 
     <section className="bg-black dark:bg-gray-900 relative 

@@ -39,7 +39,7 @@ export default function Card({
 
 
   return (
-    <div className="relative w-full rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+    <div className="relative w-full rounded-lg border border-gray-300 overflow-hidden bg-white shadow dark:border-gray-700 dark:bg-gray-800">
       <Link to={`/movie/${id}`}>
         <img
           className="w-full rounded-t-lg"
