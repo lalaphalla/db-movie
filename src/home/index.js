@@ -1,6 +1,9 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
-import Card from "../components/Card";
+
 import { useDispatch, useSelector } from "react-redux";
+import Loading from "../components/Loading";
+import Hero from "../components/Hero";
+import CardTrailer from "../components/CardTrailer";
 import {
   fetchNowPlayingMovies,
   fetchPopularMovies,
@@ -9,12 +12,6 @@ import {
   fetchTrendingMovies,
   fetchUpComingMovies,
 } from "../redux/actions/movieActions";
-import MovieSearch from "../components/MovieSearch";
-import Loading from "../components/Loading";
-import Hero from "../components/Hero";
-import ModalTest from "../components/ModalTest";
-import InputSearch from "../components/ui/InputSearch";
-import CardTrailer from "../components/CardTrailer";
 
 const Heavy = lazy(() => import("../components/Card"));
 const RandomPopular = lazy(() => import("../components/Hero"));
@@ -38,8 +35,7 @@ export default function Home() {
     dispatch(fetchNowPlayingMovies(limit));
     dispatch(fetchUpComingMovies(limit));
     dispatch(fetchTopRatedMovies(limit));
-    if (randomMovie) dispatch(fetchRandomMovie());
-    else return;
+    dispatch(fetchRandomMovie())
   }, []);
  
 
@@ -56,24 +52,8 @@ export default function Home() {
     );
   };
 
-  const upComingMovieTrailer = () => {
-    // 1. Video url, title movie
-    // get 4 movie trailer
-    // trendingMovies && trendingMovies.length > 0 && trendingMovies.length < 4
-    trendingMovies &&
-      trendingMovies.map((movie) => {
-        <CardTrailer
-          key={movie.id}
-          title={movie.title}
-          backdrop_path={movie.backdrop_path}
-        />;
-      });
-  };
-
-
-
   return (
-    <section className="">
+    <section>
       {isLoading ? (
         <Loading />
       ) : (
