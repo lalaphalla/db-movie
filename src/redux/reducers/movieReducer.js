@@ -92,6 +92,8 @@ export const movieReducer = (state = initialState, action) => {
       return {...state, tvDetail: {}, isLoading:true }
       case actionType.CLEAR_PERSON_DETAILS: 
       return {...state, personDetail: {}, isLoading:true } 
+      case actionType.CLEAR_SEARCH: 
+      return {...state, searchMovies: [], isLoading:true } 
 
     default:
       return state;

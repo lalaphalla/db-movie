@@ -236,15 +236,6 @@ export const fetchMovieTrailer = (id) => {
     );
   };
 };
-export const clearMovieDetail = () => {
-  return { type: "CLEAR_MOVIE_DETAILS" };
-};
-export const clearTvDetail = () => {
-  return { type: "CLEAR_TV_DETAILS" };
-};
-export const clearPersonDetail = () => {
-  return { type: actionType.CLEAR_PERSON_DETAILS };
-};
 
 // return (dispatch) => {
 //     axios(`${API_URL}movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en- US&page=${currentPage + 1}`)
@@ -278,4 +269,18 @@ export const fetchPersonCredits = (id) => {
       }),
     );
   };
+};
+
+
+export const clearMovieDetail = () => {
+  return { type: "CLEAR_MOVIE_DETAILS" };
+};
+export const clearTvDetail = () => {
+  return { type: "CLEAR_TV_DETAILS" };
+};
+export const clearPersonDetail = () => {
+  return { type: actionType.CLEAR_PERSON_DETAILS };
+};
+export const clearSearch = () => {
+  return { type: actionType.CLEAR_SEARCH };
 };

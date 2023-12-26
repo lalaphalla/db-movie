@@ -1,15 +1,12 @@
 import React from "react";
+import ImagePath from "./ui/ImagePath";
 
 export default function SearchCard(id, title, release_date, poster_path) {
 
   return (
     <section>
       <Link to={`/movie/${id}`}>
-        <img
-          className="rounded-t-lg w-full"
-          src={` http://image.tmdb.org/t/p/w440_and_h660_face/${poster_path}`}
-          alt="poster"
-        />
+        <ImagePath path={poster_path} type='POSTER' />
       </Link>
 
       <div>
