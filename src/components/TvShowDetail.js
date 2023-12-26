@@ -28,11 +28,12 @@ export default function TvShowDetail() {
       ) : (
         <div>
           <div className="flex">
-            <img
+          <ImagePath path={tvDetail.poster_path} type={'POSTER'} />
+            {/* <img
               className="rounded-t-lg w-48"
               src={` http://image.tmdb.org/t/p/w500/${tvDetail.poster_path}`}
               alt="poster"
-            />
+            /> */}
             <div>
               <h3>{tvDetail.name}</h3>
               <p>

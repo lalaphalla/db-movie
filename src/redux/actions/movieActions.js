@@ -274,7 +274,7 @@ export const fetchPersonCredits = (id) => {
 
 export const clearMovieDetail = () => {
   return { type: "CLEAR_MOVIE_DETAILS" };
-};
+}; 
 export const clearTvDetail = () => {
   return { type: "CLEAR_TV_DETAILS" };
 };

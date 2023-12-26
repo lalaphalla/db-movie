@@ -11,6 +11,7 @@ import Loading from "../components/Loading";
 import KnowFor from "../components/KnowFor";
 
 export default function Person() {
+  
   const dispatch = useDispatch();
   const { id } = useParams();
   let { personDetail, personCredits } = useSelector((state) => state.movieR);

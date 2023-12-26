@@ -61,7 +61,7 @@ export default function Home() {
         <div>
           <Suspense fallback={<Loading />}>
             {randomMovie && (
-              <Hero
+              <RandomPopular
                 id={randomMovie.id}
                 title={randomMovie.title}
                 overview={randomMovie.overview}

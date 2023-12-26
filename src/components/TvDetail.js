@@ -16,14 +16,14 @@ export default function TvDetail() {
 
   const [casts, setCasts] = useState([]);
 
-  let { tvDetail } = useSelector((state) => state.movieR);
+  let { tvDetail, isTvDetailLoad } = useSelector((state) => state.movieR);
   let { isLoading } = useSelector((state) => state.movieR);
 
   const hours = Math.floor(tvDetail.runtime / 60);
   const minutes = tvDetail.runtime % 60;
   const percentage = Math.round(tvDetail.vote_average * 10);
 
-  const imageUrl = API_BACKDROP_PATH + tvDetail.backdrop_path; //`http://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${movieDetail.backdrop_path}`
+  const imageUrl = tvDetail.backdrop_path && API_BACKDROP_PATH + tvDetail.backdrop_path; //`http://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${movieDetail.backdrop_path}`
 
   const finalTrailer = "Final Trailer";
   const officialTrailer = "Official Trailer";
@@ -47,10 +47,11 @@ export default function TvDetail() {
     return () => {
       dispatch(clearTvDetail());
     };
-  }, [dispatch]);
+  }, [dispatch,id]);
+
   return (
-    <div className="">
-      {isLoading ? (
+    <>
+      {isTvDetailLoad ? (
         <Loading />
       ) : (
         <div className="grid grid-cols-1">
@@ -121,6 +122,6 @@ export default function TvDetail() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

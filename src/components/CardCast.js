@@ -1,11 +1,10 @@
 import React from "react";
-import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Link } from "react-router-dom"; 
 import defaultImage from "../assets/500x750.png";
 
 export default function CardCast({id, name, profile_path,character  }) {
-  const percentage = 66;
+  
 
   const getThumbnail = () => {
     return profile_path

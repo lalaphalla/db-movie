@@ -1,7 +1,10 @@
-import React, {  useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "./Card";
 import { fetchMoreMovies } from "../redux/actions/movieActions";
+import Loading from "./Loading";
+
+const Heavy = lazy(() => import("../components/Card"));
 
 export const MovieList = ({ movies, totalPages, genresIds }) => {
   const dispatch = useDispatch();
@@ -10,20 +13,20 @@ export const MovieList = ({ movies, totalPages, genresIds }) => {
 
   const createPopularMovieList = (movieList) => {
     return isLoading
-      ? "loading"
+      ? <Loading />
       : movieList &&
-          movieList.map((movie) => {
-            return (
-              <Card
-                key={movie.id}
-                id={movie.id}
-                title={movie.title}
-                vote_average={movie.vote_average}
-                release_date={movie.release_date}
-                poster_path={movie.poster_path}
-              />
-            );
-          });
+      movieList.map((movie) => {
+        return (
+          <Heavy
+            key={movie.id}
+            id={movie.id}
+            title={movie.title}
+            vote_average={movie.vote_average}
+            release_date={movie.release_date}
+            poster_path={movie.poster_path}
+          />
+        );
+      });
   };
 
   const handleLoadMore = () => {
@@ -37,9 +40,13 @@ export const MovieList = ({ movies, totalPages, genresIds }) => {
       {/* <h1>
         Page number: {movies && curPage} Total Pages: {movies && totalPages}
       </h1> */}
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-5 ">
-        {createPopularMovieList(movies)}
-      </div>
+
+      <Suspense fallback={<Loading />}>
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-5 ">
+          {createPopularMovieList(movies)}
+        </div> 
+      </Suspense>
+
       <button
         type="button"
         onClick={handleLoadMore}

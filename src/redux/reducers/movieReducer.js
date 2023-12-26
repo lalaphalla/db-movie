@@ -20,6 +20,7 @@ const initialState = {
   itemsPerPage: 10,
   isLoading: true,
   isMovieDetailLoad: true,
+  isTvDetailLoad: true,
   totalPages: 0
 };
 
@@ -64,7 +65,7 @@ export const movieReducer = (state = initialState, action) => {
       return { ...state, movieTrailer: payload, isLoading: false };
      
     case actionType.GET_TV_DETAIL:
-      return { ...state, tvDetail: payload, isLoading: false };
+      return { ...state, tvDetail: payload, isTvDetailLoad:false , isLoading: false };
 
     case actionType.SEARCH_MOVIE:
       return { ...state, searchMovies: payload, isLoading: false };
@@ -87,9 +88,9 @@ export const movieReducer = (state = initialState, action) => {
       return { ...state, personCredits: payload};
 
       case actionType.CLEAR_MOVIE_DETAILS: 
-      return {...state, movieDetail: {}, isLoading:true }
+      return {...state, movieDetail: {}, isMovieDetailLoad:true, isLoading: true }
       case actionType.CLEAR_TV_DETAILS: 
-      return {...state, tvDetail: {}, isLoading:true }
+      return {...state, tvDetail: {}, isTvDetailLoad:true, isLoading:true }
       case actionType.CLEAR_PERSON_DETAILS: 
       return {...state, personDetail: {}, isLoading:true } 
       case actionType.CLEAR_SEARCH: 

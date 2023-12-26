@@ -8,8 +8,7 @@ export default function People() {
 
   useEffect(() => {
     fetchPopularPeople().then((res) => {
-      setPeople(res.results);
-      console.log(res);
+      setPeople(res.results); 
     });
   }, []);
   return (
