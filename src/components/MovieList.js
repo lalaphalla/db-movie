@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "./Card";
 import { fetchMoreMovies } from "../redux/actions/movieActions";
@@ -27,18 +27,16 @@ export const MovieList = ({ movies, totalPages, genresIds }) => {
   };
 
   const handleLoadMore = () => {
-    console.log(movies);
     setCurPage(curPage + 1);
     if (isLoading) return;
     dispatch(fetchMoreMovies(curPage, genresIds));
-    console.log("handleloadmore", curPage);
   };
 
   return (
     <>
-      <h1>
+      {/* <h1>
         Page number: {movies && curPage} Total Pages: {movies && totalPages}
-      </h1>
+      </h1> */}
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5 ">
         {createPopularMovieList(movies)}
       </div>

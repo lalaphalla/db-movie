@@ -47,7 +47,7 @@ export default function TrailerModal({ videoId }) {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
+        contentLabel="Video Trailer"
       >
         {/* <h1 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h1> */}
         {/* <button onClick={closeModal}>close</button>

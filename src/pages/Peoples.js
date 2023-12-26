@@ -13,9 +13,9 @@ export default function People() {
     });
   }, []);
   return (
-    <div className="max-w-screen-xl mx-auto">
-      <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+    <div className="max-w-screen-xl mx-auto px-4 ">
+      <h1 className="mb-4 font-lime my-4 text-3xl text-gray-900 dark:text-white md:text-4xl ">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-primary ">
           Popular
         </span>{" "}
         People

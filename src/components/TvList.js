@@ -38,11 +38,11 @@ export default function TvList({tvShows, totalPages, genresIds, isLoading}) {
   };
   return (
     <>
-      <h1>
-        {/* Page number: {movies && curPage} Total Pages: {movies && totalPages} */}
+      {/* <h1>
+        Page number: {movies && curPage} Total Pages: {movies && totalPages}
         TV Show
-      </h1>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-5 ">
+      </h1> */}
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
         {createTvList(tvShows)}
       </div>
       <button

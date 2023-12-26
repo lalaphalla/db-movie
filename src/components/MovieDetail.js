@@ -22,7 +22,7 @@ export default function MovieDetail() {
   let { movieDetail, movieTrailer } = useSelector((state) => state.movieR);
   let { isMovieDetailLoad } = useSelector((state) => state.movieR);
 
-  const imageUrl = API_BACKDROP_PATH + movieDetail.backdrop_path; //`http://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${movieDetail.backdrop_path}`
+  const imageUrl = movieDetail.backdrop_path && API_BACKDROP_PATH + movieDetail.backdrop_path; //`http://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${movieDetail.backdrop_path}`
   const hours = Math.floor(movieDetail.runtime / 60);
   const minutes = movieDetail.runtime % 60;
   const percentage = Math.round(movieDetail.vote_average * 10);
