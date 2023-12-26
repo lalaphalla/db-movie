@@ -1,8 +1,6 @@
-import React from "react";
-import { CircularProgressbar } from "react-circular-progressbar";
+import React from "react"; 
 import "react-circular-progressbar/dist/styles.css";
-import { Link } from "react-router-dom"; 
-import defaultImage from "../assets/500x750.png";
+import { Link } from "react-router-dom";  
 import ImagePath from "./ui/ImagePath";
 
 export default function CardCreditMovie({id, title, poster_path }) {
@@ -12,13 +10,9 @@ export default function CardCreditMovie({id, title, poster_path }) {
         <ImagePath path={poster_path} type='POSTER' />
       </Link>
       <div className="p-5"> 
-        <p className="mb-3 font-bold text-gray-700 dark:text-gray-400 ">
+        <p className="mb-3 text-gray-700 dark:text-gray-400 ">
         {title}
-        </p> 
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          
-        </p> 
-        
+        </p>  
       </div>
     </div>
   );
